@@ -1644,35 +1644,6 @@
         /* 卡通形象样式 */
         .floating-mascot {
             position: fixed;
-            top: 80px;  /* 从20px调整到80px，避免被导航栏遮挡 */
-            right: 20px;
-            z-index: 1001;  /* 从5调整到1001，确保在导航栏之上 */
-            animation: gentleFloat 4s ease-in-out infinite;
-        }
-
-        .mascot-image {
-                width: 150px;
-                height: auto;
-                border-radius: 15px;
-                box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
-                transition: transform 0.3s ease;
-                cursor: pointer;
-            }
-
-        .mascot-image:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
-        }
-
-        @keyframes gentleFloat {
-            0%, 100% { 
-                transform: translateY(0px);
-            }
-            50% { 
-                transform: translateY(-10px);
-            }
-        }
-        
         .wisdom-section {
             margin: 4rem 0;
         }
@@ -2138,16 +2109,6 @@
             
             .floating-mascot {
                 top: 10px;
-                right: 10px;
-            }
-            
-            .mascot-image {
-                width: 80px;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -4693,3 +4654,4 @@
 </body>
 
 </html>
+
