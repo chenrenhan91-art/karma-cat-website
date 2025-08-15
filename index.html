@@ -11,6 +11,8 @@
       gtag('js', new Date());
       gtag('config', 'G-ABCDEFGHIJ');
     </script>
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS&currency=USD"></script>
     <!-- 取消注释CSP策略 -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com https://www.paypal.com https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://www.google-analytics.com;">    
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -1644,6 +1646,60 @@
         /* 卡通形象样式 */
         .floating-mascot {
             position: fixed;
+            top: 80px;  /* 从20px调整到80px，避免被导航栏遮挡 */
+            right: 20px;
+            z-index: 1001;  /* 从5调整到1001，确保在导航栏之上 */
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        .mascot-image {
+                width: 150px;
+                height: auto;
+                border-radius: 15px;
+                box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+                transition: transform 0.3s ease;
+                cursor: pointer;
+            }
+
+        .mascot-image:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { 
+                transform: translateY(0px);
+            }
+            50% { 
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* 左侧悬浮图片样式 */
+        .floating-mascot-left {
+            position: fixed;
+            top: 80px;  /* 与右侧图片保持相同高度 */
+            left: 20px;  /* 定位到左侧 */
+            z-index: 1001;  /* 确保在导航栏之上 */
+            animation: gentleFloatLeft 4s ease-in-out infinite;
+        }
+        
+        /* 左侧图片专用动画，增加轻微的左右摆动 */
+        @keyframes gentleFloatLeft {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px);
+            }
+            25% { 
+                transform: translateY(-8px) translateX(-3px);
+            }
+            50% { 
+                transform: translateY(-10px) translateX(0px);
+            }
+            75% { 
+                transform: translateY(-8px) translateX(3px);
+            }
+        }
+        
         .wisdom-section {
             margin: 4rem 0;
         }
@@ -2006,14 +2062,7 @@
             box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
         }
 
-        /* 左侧图片 */
-        .floating-mascot-left {
-            position: fixed;
-            top: 80px;
-            left: 20px;
-            z-index: 1001;
-            animation: gentleFloat 4s ease-in-out infinite 2s;
-        }       
+
 
         @keyframes gentleFloat {
             0%, 100% { 
@@ -2107,8 +2156,30 @@
                 align-items: center;
             }
             
+            .floating-mascot,
+            .floating-mascot-left {
+                display: none; /* 在小屏幕上隐藏悬浮图片 */
+            }
+        }
+        
+        @media (max-width: 1024px) {
             .floating-mascot {
-                top: 10px;
+                right: 10px;
+                top: 70px;
+            }
+            
+            .floating-mascot-left {
+                left: 10px;
+                top: 70px;
+            }
+            
+            .mascot-image {
+                width: 120px; /* 在中等屏幕上缩小图片 */
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -2204,13 +2275,14 @@
                     <a href="#shop" class="btn btn-secondary">Explore Shop 🛍️</a>
                 </div>
             </div>
-            <!-- 添加卡通形象 -->
+            <!-- 右侧悬浮图片 -->
             <div class="floating-mascot">
-                <img src="./cat-mascot.png" alt="Karma Cat Mascot" class="mascot-image">
+                <img src="cat-mascot.png" alt="Karma Cat Mascot" class="mascot-image">
             </div>
-            <!-- 左侧对称卡通形象 -->
+            
+            <!-- 左侧悬浮图片 -->
             <div class="floating-mascot-left">
-                <img src="./karma-mascot.png" alt="Karma Mascot Left" class="mascot-image">
+                <img src="karma-mascot.png" alt="Karma Mascot Left" class="mascot-image">
             </div>
         </section>
         
@@ -4652,6 +4724,4 @@
         });
     </script>
 </body>
-
 </html>
-
