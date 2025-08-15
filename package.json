@@ -1,0 +1,17 @@
+{
+  "name": "karma-cat-website",
+  "version": "1.0.0",
+  "description": "Eastern Five Elements Cat Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s .",
+    "build": "echo 'Build complete'",
+    "dev": "serve -s . -p 3000"
+  },
+  "dependencies": {
+    "serve": "^14.0.0"
+  },
+  "keywords": ["five-elements", "cats", "eastern-philosophy"],
+  "author": "Your Name",
+  "license": "MIT"
+}

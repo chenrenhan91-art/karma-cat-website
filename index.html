@@ -1,0 +1,4694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ABCDEFGHIJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ABCDEFGHIJ');
+    </script>
+    <!-- 取消注释CSP策略 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://checkout.stripe.com https://www.paypal.com https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://www.google-analytics.com;">    
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="description" content="Experience the charm of Eastern Five Elements philosophy through adorable cats. Discover balance and harmony in our unique cat-themed divination and wellness products.">
+    <meta name="keywords" content="five elements, cats, eastern philosophy, divination, wellness, yin yang">
+    <meta name="author" content="karma is a cat">
+    
+    <!-- Open Graph标签 -->
+    <meta property="og:title" content="karma is a cat">
+    <meta property="og:description" content="Experience the charm of Eastern Five Elements with adorable cats">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://karmaisacat.com">
+    <meta property="og:image" content="https://karmaisacat.com/assets/images/og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="karma is a cat">
+    <meta name="twitter:description" content="Experience the charm of Eastern Five Elements with adorable cats">
+    <meta name="twitter:image" content="https://karmaisacat.com/assets/images/twitter-card.jpg">
+    <link rel="canonical" href="https://karmaisacat.com">
+    <title>karma is a cat - Experience the Charm of Eastern Five Elements with Adorable Cats</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS&currency=USD"></script>
+    
+    <!-- QR Code生成库 -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* I Ching Principles Styles */
+        .iching-principles {
+            margin: 2rem 0;
+        }
+        
+        .principle-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 12px;
+            border-left: 4px solid #7c3aed;
+        }
+        
+        .principle-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            color: #7c3aed;
+        }
+        
+        .principle-text strong {
+            color: #581c87;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .principle-text p {
+            color: #4c1d95;
+            margin: 0;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        .closing-wisdom {
+            background: linear-gradient(135deg, #fef7ed, #fed7aa);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #fdba74;
+            font-style: italic;
+            color: #92400e;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        /* 微信支付二维码模态框 */
+        .qr-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .qr-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .qr-content h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .qr-content img {
+            max-width: 200px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .qr-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .qr-content button {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        /* 支付表单样式 */
+        .payment-info {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .qr-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .qr-instruction {
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .payment-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .status-indicator {
+            font-size: 18px;
+        }
+        
+        #paypal-button-container {
+            margin: 20px 0;
+        }
+        
+        /* 安全相关样式 */
+        .security-badges {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding: 10px;
+            background: linear-gradient(45deg, #f0fdf4, #ecfdf5);
+            border-radius: 8px;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .security-badge {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #166534;
+        }
+        
+        .security-badge span {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+        
+        .payment-security-info {
+            background: linear-gradient(45deg, #fef3c7, #fef9c3);
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+        
+        .loading-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            color: #7c3aed;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e0e7ff;
+            border-top: 4px solid #7c3aed;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            width: 80%;
+            max-width: 800px;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        .checkout-content {
+            max-width: 900px;
+        }
+        
+        .close-modal {
+            color: #7c3aed;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* 购物车样式 */
+        #cart-items {
+            margin: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #e0e7ff;
+            margin-bottom: 10px;
+        }
+        
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #7c3aed;
+        }
+        
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #581c87;
+        }
+        
+        /* 结账步骤样式 */
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .checkout-steps::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #e0e7ff;
+            z-index: 1;
+        }
+        
+        .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e0e7ff;
+            color: #7c3aed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step.active {
+            background-color: #7c3aed;
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #581c87;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e7ff;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .form-group select {
+            background-color: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .form-group optgroup {
+            font-weight: bold;
+            color: #581c87;
+            background-color: #f3e8ff;
+            padding: 5px;
+        }
+
+        .form-group option {
+            padding: 8px;
+            color: #374151;
+            background-color: white;
+        }
+
+        .form-group option:hover {
+            background-color: #f3e8ff;
+        }
+
+        /* 搜索功能样式 */
+        .country-search {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .country-search input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e7ff;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background-color: #f9fafb;
+        }
+
+        .country-search input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            background-color: white;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .half {
+            width: 50%;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        /* 支付选项样式 */
+        .payment-options {
+            margin-bottom: 25px;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #e0e7ff;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .payment-option:hover {
+            background-color: #f3e8ff;
+        }
+        
+        .payment-option input {
+            margin-right: 10px;
+        }
+        
+        /* 订单确认样式 */
+        .confirmation-content {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .confirmation-icon {
+            font-size: 5rem;
+            color: #10b981;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 25%, #e0e7ff 50%, #fef3c7 75%, #fee2e2 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Yin-Yang Background Elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 15%;
+            right: 8%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 25% 25%, #000 25%, transparent 25%), 
+                        radial-gradient(circle at 75% 75%, #fff 25%, transparent 25%), 
+                        linear-gradient(90deg, #000 50%, #fff 50%);
+            border-radius: 50%;
+            opacity: 0.08;
+            z-index: -1;
+            animation: rotate 20s linear infinite;
+        }
+
+        body::after {
+            content: '☯';
+            position: fixed;
+            bottom: 15%;
+            left: 8%;
+            font-size: 60px;
+            opacity: 0.08;
+            z-index: -1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.1); opacity: 0.2; }
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .site-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #ef4444, #f97316, #fbbf24, #10b981, #3b82f6) 1;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .site-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #7c3aed;
+        }
+
+        .site-logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(45deg, #7c3aed, #ec4899, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 100; /* 确保导航标题在最上层 */
+        }
+
+        /* Navigation Menu */
+        .main-navigation ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .main-navigation a {
+            text-decoration: none;
+            color: #7c3aed;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .main-navigation a:hover {
+            color: #5b21b6;
+            transform: translateY(-2px);
+        }
+
+        .main-navigation a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #ec4899);
+            transition: width 0.3s ease;
+        }
+
+        .main-navigation a:hover::after {
+            width: 100%;
+        }
+
+        .header-cart {
+            background: linear-gradient(45deg, #f3e8ff, #fce7f3);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: 500;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .header-cart:hover {
+            border-color: #7c3aed;
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #e0e7ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 为左侧也添加一个小的卡通装饰 */
+        .hero-section .cartoon-decoration {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #7c3aed, #ec4899);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: gentleFloat 3s ease-in-out infinite reverse;
+            z-index: 2;
+            opacity: 0.7;
+            box-shadow: 0 2px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .hero-section::before {
+            content: '🌟✨🌙☀️🌟';
+            position: absolute;
+            top: 10px; /* 从20px改为10px，避免与标题重叠 */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem; /* 从2rem减小到1.5rem */
+            opacity: 0.2; /* 从0.3减小到0.2，降低透明度 */
+            animation: float 6s ease-in-out infinite;
+            z-index: 1; /* 确保在背景层 */
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #581c87, #7c3aed, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            margin-top: 2rem; /* 增加顶部边距，避免与装饰元素重叠 */
+            text-shadow: none; /* 移除文字阴影，避免与渐变文字冲突 */
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 10; /* 确保文字在最上层 */
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #7c3aed;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #7c3aed, #5b21b6);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #5b21b6, #4c1d95);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #ec4899, #db2777);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(45deg, #db2777, #be185d);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Five Elements Grid */
+        .wuxing-section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .wuxing-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #581c87, #7c3aed, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '☯';
+            position: absolute;
+            top: -10px;
+            right: -30px;
+            font-size: 1rem;
+            opacity: 0.5;
+        }
+
+        .wuxing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .wuxing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .wuxing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .wuxing-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .wuxing-card.metal {
+            background: linear-gradient(135deg, #fef3c7, #fbbf24, #f59e0b);
+            border-image: linear-gradient(45deg, #fbbf24, #f59e0b) 1;
+        }
+
+        .wuxing-card.wood {
+            background: linear-gradient(135deg, #d1fae5, #10b981, #059669);
+            border-image: linear-gradient(45deg, #10b981, #059669) 1;
+        }
+
+        .wuxing-card.water {
+            background: linear-gradient(135deg, #dbeafe, #3b82f6, #2563eb);
+            border-image: linear-gradient(45deg, #3b82f6, #2563eb) 1;
+        }
+
+        .wuxing-card.fire {
+            background: linear-gradient(135deg, #fee2e2, #ef4444, #dc2626);
+            border-image: linear-gradient(45deg, #ef4444, #dc2626) 1;
+        }
+
+        .wuxing-card.earth {
+            background: linear-gradient(135deg, #fef7ed, #f97316, #ea580c);
+            border-image: linear-gradient(45deg, #f97316, #ea580c) 1;
+        }
+
+        .wuxing-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .wuxing-title {
+            font-size: 1.8rem;
+            color: #581c87;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .wuxing-desc {
+            color: #4c1d95;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Divination Form */
+        .divination-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05), rgba(236, 72, 153, 0.05));
+        }
+
+        .divination-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            margin-bottom: 0.5rem;
+            color: #581c87;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 4rem 0;
+        }
+
+        /* 特色咨询服务样式 */
+        .featured-consultation {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 25px;
+            border: 3px solid #f59e0b;
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.3);
+        }
+
+        .consultation-product {
+            grid-column: 1 / -1; /* 占满整行 */
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            transform: scale(1.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .consultation-product .product-image {
+            min-height: 250px;
+            font-size: 4rem;
+        }
+
+        .consultation-product .product-title {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .consultation-product .product-desc {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-color: #7c3aed;
+        }
+
+        .product-image {
+            position: relative;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border: 2px dashed #cbd5e1;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            font-size: 3rem;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .product-image:hover {
+            border-color: #7c3aed;
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            transform: scale(1.02);
+        }
+        
+        .product-image.editable {
+            border-style: solid;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+        }
+        
+        .product-image.editable:hover {
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+        }
+        
+        /* 编辑按钮 */
+        .edit-image-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .product-image:hover .edit-image-btn {
+            opacity: 1;
+        }
+        
+        /* 图片上传区域 */
+        .image-upload-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+        }
+        
+        .image-upload-area.active {
+            display: flex;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #7c3aed;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            color: #581c87;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-desc {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #ec4899, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Divination Result */
+        .divination-result {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            display: none;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .wuxing-chart {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .chart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .chart-item:hover {
+            background: rgba(124, 58, 237, 0.05);
+            transform: translateX(5px);
+        }
+
+        .chart-bar {
+            width: 120px;
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .chart-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #ec4899);
+            transition: width 1s ease;
+            border-radius: 6px;
+        }
+
+        .fortune-analysis {
+            background: linear-gradient(135deg, #fef7ed, #fed7aa);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #fdba74;
+        }
+
+        .fortune-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 12px;
+            line-height: 1.8;
+        }
+
+        .fortune-highlight {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        /* About Section Styles */
+        .about-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #ffffff 100%);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-header h3 {
+            color: #7c3aed;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .intro-text {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, #f3e8ff, #fce7f3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .quote-section blockquote {
+            color: #7c3aed;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .elements-list {
+            margin: 2rem 0;
+        }
+        
+        .element-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+        
+        .element-item:hover {
+            background: #f1f5f9;
+        }
+        
+        .element-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 40px;
+            text-align: center;
+        }
+        
+        .element-text strong {
+            color: #7c3aed;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+        
+        .element-text p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .cta-text {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .applications-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .app-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .app-item:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+        
+        .app-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            width: 50px;
+            text-align: center;
+        }
+        
+        .app-content h4 {
+            color: #7c3aed;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+        
+        .app-content p {
+            color: #666;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        
+        .global-section {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+        
+        .global-section h4 {
+            color: #92400e;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+        }
+        
+        .benefit-icon {
+            font-size: 1.2rem;
+            margin-right: 0.8rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .benefit-text {
+            color: #92400e;
+            font-weight: 500;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .about-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .about-hero {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .about-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .about-hero h3 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #581c87, #7c3aed, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .about-tagline {
+            font-size: 1.3rem;
+            color: #7c3aed;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .element-wood { color: #059669; font-weight: bold; }
+        .element-fire { color: #dc2626; font-weight: bold; }
+        .element-earth { color: #ea580c; font-weight: bold; }
+        .element-metal { color: #f59e0b; font-weight: bold; }
+        .element-water { color: #2563eb; font-weight: bold; }
+
+        .studio-mission {
+            background: linear-gradient(135deg, #fef7ed, #fed7aa);
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 4rem 0;
+            border: 3px solid #fdba74;
+        }
+
+        .mission-content {
+            text-align: center;
+        }
+
+        .mission-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .mission-content h3 {
+            font-size: 2.2rem;
+            color: #92400e;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-text {
+            font-size: 1.2rem;
+            color: #b45309;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .mission-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .point {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .point-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .point h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .point p {
+            color: #b45309;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .why-choose-us {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .why-choose-us h3 {
+            font-size: 2.2rem;
+            color: #581c87;
+            margin-bottom: 2.5rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: #7c3aed;
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h4 {
+            color: #581c87;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .benefit-card p {
+            color: #7c3aed;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .about-cta {
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .cta-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+        }
+
+        .cta-buttons .btn:hover {
+            background: white;
+            color: #7c3aed;
+        }
+        
+        /* About页面增强样式 */
+        .about-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .mystical-cats {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .bagua-circle {
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            color: #7c3aed;
+            margin: 1rem 0;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .studio-tagline {
+            font-size: 1.2rem;
+            color: #581c87;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* 卡通形象样式 */
+        .floating-mascot {
+            position: fixed;
+            top: 80px;  /* 从20px调整到80px，避免被导航栏遮挡 */
+            right: 20px;
+            z-index: 1001;  /* 从5调整到1001，确保在导航栏之上 */
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        .mascot-image {
+                width: 150px;
+                height: auto;
+                border-radius: 15px;
+                box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+                transition: transform 0.3s ease;
+                cursor: pointer;
+            }
+
+        .mascot-image:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { 
+                transform: translateY(0px);
+            }
+            50% { 
+                transform: translateY(-10px);
+            }
+        }
+        
+        .wisdom-section {
+            margin: 4rem 0;
+        }
+        
+        .wisdom-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .floating-cats {
+            position: relative;
+            height: 300px;
+        }
+        
+        .cat-element {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .cat-element.wood { top: 0; left: 50%; animation-delay: 0s; }
+        .cat-element.fire { top: 20%; right: 0; animation-delay: 0.8s; }
+        .cat-element.earth { bottom: 0; left: 50%; animation-delay: 1.6s; }
+        .cat-element.metal { top: 20%; left: 0; animation-delay: 2.4s; }
+        .cat-element.water { top: 50%; left: 25%; animation-delay: 3.2s; }
+        
+        .wisdom-card {
+            background: linear-gradient(135deg, #fef7ed, #f3e8ff);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px solid #7c3aed;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ancient-symbol {
+            font-size: 3rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .ancient-quote {
+            background: linear-gradient(135deg, #e0e7ff, #fef3c7);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #7c3aed;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .quote-symbol {
+            font-size: 2rem;
+            color: #7c3aed;
+            font-weight: bold;
+        }
+        
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .element-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .element-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .element-cat {
+            font-size: 2rem;
+        }
+        
+        .bagua-section {
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 25px;
+            margin: 4rem 0;
+        }
+        
+        .bagua-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .bagua-center {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .yin-yang-cats {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .yin-cat, .yang-cat {
+            position: absolute;
+            font-size: 3rem;
+            animation: orbit 10s linear infinite;
+        }
+        
+        .yin-cat { animation-delay: 0s; }
+        .yang-cat { animation-delay: 5s; }
+        
+        .center-symbol {
+            font-size: 4rem;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .trigrams-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .trigram-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+        
+        .trigram {
+            font-size: 2rem;
+            color: #fbbf24;
+        }
+        
+        .offerings-section {
+            margin: 4rem 0;
+        }
+        
+        .offerings-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .mystical-border {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .offering-card {
+            background: linear-gradient(135deg, #fef7ed, #f0f9ff);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .offering-card:hover {
+            transform: translateY(-10px);
+            border-color: #7c3aed;
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+        }
+        
+        .card-cat {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .card-element {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-accent {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 1.2rem;
+            opacity: 0.3;
+        }
+        
+        .choose-us-section {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 4rem 0;
+        }
+        
+        .benefits-constellation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-star {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-star:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        .star-cat {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+        
+        .mystical-cta {
+            position: relative;
+            margin: 4rem 0;
+        }
+        
+        .cta-background {
+            background: linear-gradient(135deg, #1e1b4b, #7c3aed, #ec4899);
+            padding: 4rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-elements span {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .float-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .float-2 { top: 20%; right: 15%; animation-delay: 1s; }
+        .float-3 { bottom: 30%; left: 20%; animation-delay: 2s; }
+        .float-4 { top: 60%; right: 25%; animation-delay: 3s; }
+        .float-5 { bottom: 10%; right: 10%; animation-delay: 4s; }
+        .float-6 { bottom: 20%; left: 15%; animation-delay: 5s; }
+        
+        .mystical-primary, .mystical-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .mystical-primary {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1e1b4b;
+        }
+        
+        .mystical-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .mystical-primary:hover, .mystical-secondary:hover {
+            transform: scale(1.1);
+        }
+        
+        /* 动画效果 */
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .wisdom-container, .bagua-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .offerings-grid, .benefits-constellation {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* 右侧图片 */
+        .floating-mascot {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1001;
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        /* 统一的图片样式 */
+        .mascot-image {
+            width: 150px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mascot-image:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.4);
+        }
+
+        /* 左侧图片 */
+        .floating-mascot-left {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            z-index: 1001;
+            animation: gentleFloat 4s ease-in-out infinite 2s;
+        }       
+
+        @keyframes gentleFloat {
+            0%, 100% { 
+                transform: translateY(0px);
+            }
+            50% { 
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section::before {
+                font-size: 1.2rem;
+                top: 5px;
+                opacity: 0.15;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+                margin-top: 1.5rem;
+            }
+            
+            body::before {
+                width: 60px;
+                height: 60px;
+                top: 20%;
+                right: 5%;
+            }
+            
+            body::after {
+                font-size: 40px;
+                bottom: 20%;
+                left: 5%;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-navigation ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .wuxing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero {
+                padding: 2rem;
+            }
+            
+            .about-hero h3 {
+                font-size: 2rem;
+            }
+            
+            .mission-points {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .floating-mascot {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .mascot-image {
+                width: 80px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #7c3aed;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background: linear-gradient(135deg, #581c87, #7c3aed);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .site-footer::before {
+            content: '☯ ✨ 🐱 ✨ ☯';
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="site-logo">
+                    <div style="width: 40px; height: 40px; background: linear-gradient(45deg, #7c3aed, #ec4899); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px;">🐱</div>
+                    <h1 class="site-title">karma is a cat</h1>
+                </a>
+                
+                <nav class="main-navigation">
+                    <ul>
+                        <li><a href="#home" data-lang-key="nav.home">Home</a></li>
+                        <li><a href="#divination" data-lang-key="nav.divination">Divination</a></li>
+                        <li><a href="#shop" data-lang-key="nav.shop">Shop</a></li>
+                        <li><a href="#about" data-lang-key="nav.about">About</a></li>
+                        <li class="language-switcher">
+                            <select id="language-select" onchange="switchLanguage(this.value)">
+                                <option value="en">🇺🇸 English</option>
+                                <option value="zh">🇨🇳 中文</option>
+                            </select>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <a href="#" class="header-cart">
+                    🛒 Cart (3)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">🐱 karma is a cat 🌟</h1>
+                <p class="hero-subtitle">Discover the mystical charm of Eastern Five Elements with adorable cats</p>
+                <div class="hero-buttons">
+                    <a href="#divination" class="btn btn-primary">Start Your Reading ✨</a>
+                    <a href="#shop" class="btn btn-secondary">Explore Shop 🛍️</a>
+                </div>
+            </div>
+            <!-- 添加卡通形象 -->
+            <div class="floating-mascot">
+                <img src="cat-mascot.png" alt="Karma Cat Mascot" class="mascot-image">
+            </div>
+            <!-- 左侧对称卡通形象 -->
+            <div class="floating-mascot-left">
+                <img src="karma-mascot.png" alt="Karma Mascot Left" class="mascot-image">
+            </div>
+        </section>
+        
+        <!-- Five Elements Characteristics -->
+        <section class="wuxing-section">
+            <div class="container">
+                <h2 class="section-title">Five Elements Essence</h2>
+                <div class="wuxing-grid">
+                    <div class="wuxing-card wood">
+                        <div class="wuxing-icon">🌳🐱</div>
+                        <h3 class="wuxing-title">Wood</h3>
+                        <p class="wuxing-desc">Growth • Creativity • Flexibility • Compassion • Innovation • Healing</p>
+                    </div>
+                    <div class="wuxing-card fire">
+                        <div class="wuxing-icon">🔥🐱</div>
+                        <h3 class="wuxing-title">Fire</h3>
+                        <p class="wuxing-desc">Passion • Energy • Transformation • Leadership • Joy • Inspiration</p>
+                    </div>
+                    <div class="wuxing-card earth">
+                        <div class="wuxing-icon">🏔️🐱</div>
+                        <h3 class="wuxing-title">Earth</h3>
+                        <p class="wuxing-desc">Stability • Nurturing • Grounding • Reliability • Patience • Harmony</p>
+                    </div>
+                    <div class="wuxing-card metal">
+                        <div class="wuxing-icon">⚔️🐱</div>
+                        <h3 class="wuxing-title">Metal</h3>
+                        <p class="wuxing-desc">Strength • Precision • Structure • Discipline • Focus • Determination</p>
+                    </div>
+                    <div class="wuxing-card water">
+                        <div class="wuxing-icon">💧🐱</div>
+                        <h3 class="wuxing-title">Water</h3>
+                        <p class="wuxing-desc">Wisdom • Intuition • Flow • Adaptability • Depth • Reflection</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Divination Service -->
+        <section id="divination" class="divination-section">
+            <div class="container">
+                <h2 class="section-title">🔮 Five Elements Interpretation 🔮</h2>
+                <p style="text-align: center; color: #7c3aed; font-size: 1.2rem; margin-bottom: 2rem;">Let our mystical cats reveal the secrets of your Five Elements destiny</p>
+                
+                <div class="divination-form">
+                    <h3 style="color: #581c87; margin-bottom: 2rem; text-align: center; font-size: 1.5rem;">Enter Your Birth Information</h3>
+                    <form id="divination-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Birth Year</label>
+                                <input type="number" name="birth_year" class="form-input" placeholder="1990" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Birth Month</label>
+                                <input type="number" name="birth_month" class="form-input" placeholder="1-12" min="1" max="12" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Birth Day</label>
+                                <input type="number" name="birth_day" class="form-input" placeholder="1-31" min="1" max="31" required>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-primary">Reveal My Destiny ✨</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Divination Result -->
+                    <div id="divination-result" class="divination-result">
+                        <h3 style="color: #581c87; margin-bottom: 2rem; text-align: center; font-size: 1.8rem;">🎯 Your Exclusive Five Elements Analysis Report</h3>
+                        <div class="result-grid">
+                            <div class="wuxing-analysis">
+                                <h4 style="color: #7c3aed; margin-bottom: 1.5rem; font-size: 1.3rem;">🌟 Five Elements Balance</h4>
+                                <div class="wuxing-chart">
+                                    <div class="chart-item">
+                                        <span style="font-weight: bold; color: #f59e0b;">⚔️ Metal</span>
+                                        <div class="chart-bar">
+                                            <div class="chart-fill" style="width: 25%; background: linear-gradient(90deg, #fbbf24, #f59e0b);"></div>
+                                        </div>
+                                        <span style="font-weight: bold;">25%</span>
+                                    </div>
+                                    <div class="chart-item">
+                                        <span style="font-weight: bold; color: #059669;">🌳 Wood</span>
+                                        <div class="chart-bar">
+                                            <div class="chart-fill" style="width: 35%; background: linear-gradient(90deg, #10b981, #059669);"></div>
+                                        </div>
+                                        <span style="font-weight: bold;">35%</span>
+                                    </div>
+                                    <div class="chart-item">
+                                        <span style="font-weight: bold; color: #2563eb;">💧 Water</span>
+                                        <div class="chart-bar">
+                                            <div class="chart-fill" style="width: 15%; background: linear-gradient(90deg, #3b82f6, #2563eb);"></div>
+                                        </div>
+                                        <span style="font-weight: bold;">15%</span>
+                                    </div>
+                                    <div class="chart-item">
+                                        <span style="font-weight: bold; color: #dc2626;">🔥 Fire</span>
+                                        <div class="chart-bar">
+                                            <div class="chart-fill" style="width: 20%; background: linear-gradient(90deg, #ef4444, #dc2626);"></div>
+                                        </div>
+                                        <span style="font-weight: bold;">20%</span>
+                                    </div>
+                                    <div class="chart-item">
+                                        <span style="font-weight: bold; color: #ea580c;">🏔️ Earth</span>
+                                        <div class="chart-bar">
+                                            <div class="chart-fill" style="width: 5%; background: linear-gradient(90deg, #f97316, #ea580c);"></div>
+                                        </div>
+                                        <span style="font-weight: bold;">5%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fortune-analysis">
+                                <h4 style="color: #7c3aed; margin-bottom: 1.5rem; font-size: 1.3rem;">🔮 Your Five Elements Characteristics</h4>
+                                <div class="fortune-content">
+                    <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">🌟 Dominant Element:</strong> Wood - You are a natural creator and healer</p>
+                    <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">🎭 Core Personality:</strong> You possess a gentle yet determined spirit, with an innate ability to bring growth and harmony wherever you go.</p>
+                    <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">💫 Life Path:</strong> Your destiny lies in healing, teaching, or creative pursuits. Trust your intuition - it's your greatest compass.</p>
+                    <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">💎 Lucky Elements:</strong> Water (enhances wisdom) & Earth (provides stability)</p>
+                    <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">🌈 Lucky Colors:</strong> Emerald Green, Ocean Blue, Golden Yellow</p>
+                    <p><strong class="fortune-highlight">🔥 Growth Areas:</strong> Embrace more Fire energy for passion and Earth energy for grounding</p>
+                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(45deg, #f3e8ff, #fce7f3); border-radius: 15px;">
+                            <h4 style="color: #581c87; margin-bottom: 1rem;">🎁 Personalized Recommendations</h4>
+                            <p style="color: #7c3aed; margin-bottom: 1.5rem;">Based on your unique Five Elements profile, we've curated special items to enhance your natural gifts.</p>
+                            <a href="#shop" class="btn btn-secondary">Find Your Perfect Match 🛍️</a>
+                        </div>
+                        
+                        <!-- Professional Consultation Service Recommendation -->
+                        <div class="consultation-offer" style="margin-top: 2rem; padding: 2.5rem; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 20px; border: 3px solid #f59e0b; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">🔮✨</div>
+                                <h3 style="color: #92400e; margin-bottom: 1rem; font-size: 1.8rem;">Professional Five Elements Consultation</h3>
+                                <p style="color: #b45309; font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.6;">Want to unlock the secrets of your destiny? Our experienced Five Elements masters provide personalized one-on-one consultations</p>
+                                
+                                <div class="consultation-features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                                    <div class="feature-item" style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 10px;">
+                                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💰</div>
+                                        <strong style="color: #92400e;">Wealth Analysis</strong>
+                                        <p style="font-size: 0.9rem; color: #b45309; margin-top: 0.5rem;">Investment timing & wealth strategies</p>
+                                    </div>
+                                    <div class="feature-item" style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 10px;">
+                                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🚀</div>
+                                        <strong style="color: #92400e;">Career Guidance</strong>
+                                        <p style="font-size: 0.9rem; color: #b45309; margin-top: 0.5rem;">Professional development & transitions</p>
+                                    </div>
+                                    <div class="feature-item" style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 10px;">
+                                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💕</div>
+                                        <strong style="color: #92400e;">Love & Relationships</strong>
+                                        <p style="font-size: 0.9rem; color: #b45309; margin-top: 0.5rem;">Romance development & marriage timing</p>
+                                    </div>
+                                    <div class="feature-item" style="background: rgba(255,255,255,0.7); padding: 1rem; border-radius: 10px;">
+                                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌿</div>
+                                        <strong style="color: #92400e;">Health & Wellness</strong>
+                                        <p style="font-size: 0.9rem; color: #b45309; margin-top: 0.5rem;">Body constitution & wellness advice</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin: 1.5rem 0;">
+                                    <p style="color: #92400e; font-weight: bold; font-size: 1.2rem;">🎯 Limited Time: $49 <span style="text-decoration: line-through; color: #9ca3af;">$99</span></p>
+                                    <p style="color: #b45309; font-size: 0.9rem;">Includes 60-minute one-on-one consultation + detailed written report</p>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                                    <button class="btn btn-primary add-to-cart consultation-btn" data-id="consultation" data-name="Professional Five Elements Consultation" data-price="49" style="background: linear-gradient(45deg, #f59e0b, #d97706); border: none; font-size: 1.1rem; padding: 12px 24px;">Book Consultation Now 🔮</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Products -->
+        <section id="shop" class="products-section">
+            <div class="container">
+                <h2 class="section-title">🛍️ Mystical Cat Collection</h2>
+                <p style="text-align: center; color: #7c3aed; font-size: 1.2rem; margin-bottom: 2rem;">Curated Five Elements treasures with feline magic for your spiritual journey</p>
+                
+                <div class="products-grid">
+                    <!-- 金元素商品 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            ⚔️🐱
+                            <div class="product-badge">⚔️ Metal</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Golden Fortune Cat Bracelet</h3>
+                            <p class="product-desc">Handcrafted with premium metals to attract wealth and enhance leadership abilities</p>
+                            <div class="product-price">$299</div>
+                            <button class="btn btn-primary add-to-cart" data-id="1" data-name="Golden Fortune Cat Bracelet" data-price="299" style="width: 100%;">Add to Cart 🛒</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 木元素商品 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            🌳🐱
+                            <div class="product-badge">🌳 Wood</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Living Wood Cat Sculpture</h3>
+                            <p class="product-desc">Natural bamboo carving that brings growth energy and creative inspiration</p>
+                            <div class="product-price">$199</div>
+                            <button class="btn btn-primary add-to-cart" data-id="2" data-name="Living Wood Cat Sculpture" data-price="199" style="width: 100%;">Add to Cart 🛒</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 水元素商品 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            💧🐱
+                            <div class="product-badge">💧 Water</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Wisdom Crystal Cat</h3>
+                            <p class="product-desc">Rare blue crystal formation that enhances intuition and emotional intelligence</p>
+                            <div class="product-price">$399</div>
+                            <button class="btn btn-primary add-to-cart" data-id="3" data-name="Wisdom Crystal Cat" data-price="399" style="width: 100%;">Add to Cart 🛒</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 火元素商品 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            🔥🐱
+                            <div class="product-badge">🔥 Fire</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Passion Fire Cat Candle</h3>
+                            <p class="product-desc">Aromatherapy candle infused with energizing scents to ignite creativity</p>
+                            <div class="product-price">$159</div>
+                            <button class="btn btn-primary add-to-cart" data-id="4" data-name="Passion Fire Cat Candle" data-price="159" style="width: 100%;">Add to Cart 🛒</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 土元素商品 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            🏔️🐱
+                            <div class="product-badge">🏔️ Earth</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Grounding Earth Cat Planter</h3>
+                            <p class="product-desc">Handmade ceramic planter that brings stability and nurturing energy</p>
+                            <div class="product-price">$129</div>
+                            <button class="btn btn-primary add-to-cart" data-id="5" data-name="Grounding Earth Cat Planter" data-price="129" style="width: 100%;">Add to Cart 🛒</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">
+                            🐱📿
+                            <div class="product-badge">✨ Harmony</div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Five Elements Balance Necklace</h3>
+                            <p class="product-desc">Masterpiece combining all five elements for perfect energy balance</p>
+                            <div class="product-price">$599</div>
+                            <button class="btn btn-primary add-to-cart" data-id="6" data-name="Five Elements Balance Necklace" data-price="599" style="width: 100%;">Add to Cart 🛒</button>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </section>
+    <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About Our Studio</h2>
+                
+                <div class="about-grid">
+                    <!-- Left Card: The Wisdom of I-Ching and Five Elements -->
+                    <div class="about-card wisdom-card">
+                        <div class="card-header">
+                            <div class="card-icon">🐱📿</div>
+                            <h3>The Wisdom of I-Ching and Five Elements</h3>
+                        </div>
+                        
+                        <div class="card-content">
+                            <!-- I Ching & Five Elements Integration -->
+                            <div class="iching-elements-section" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                                <div style="text-align: center; margin-bottom: 1.5rem;">
+                                    <h3 style="color: #7c3aed; margin-bottom: 0.5rem; font-size: 1.3rem;">I Ching Five Elements Essence</h3>
+                                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0;">"The alternation of Yin and Yang is called the Dao. To follow it is good, to complete it is one's nature." — I Ching, Great Commentary</p>
+                                </div>
+                                
+                                
+                                <!-- Five Elements Cycles Only -->
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                    <!-- Generation Cycle -->
+                                    <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); text-align: center;">
+                                        <div style="color: #22c55e; font-weight: bold; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                                            <span style="margin-right: 0.5rem;">🔄</span>
+                                            Sheng Cycle (相生)
+                                        </div>
+                                        <div style="font-size: 1.3rem; line-height: 1.6; margin-bottom: 0.8rem;">
+                                            🌳 → 🔥 → 🏔️ → ⚔️ → 💧 → 🌳
+                                        </div>
+                                        <div style="font-size: 0.85rem; color: #666; line-height: 1.4;">
+                                            <strong>Mutual Generation:</strong><br>
+                                            Wood feeds Fire → Fire creates Earth → Earth bears Metal → Metal collects Water → Water nourishes Wood
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Destruction Cycle -->
+                                    <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); text-align: center;">
+                                        <div style="color: #ef4444; font-weight: bold; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                                            <span style="margin-right: 0.5rem;">⚡</span>
+                                            Ke Cycle (相克)
+                                        </div>
+                                        <div style="font-size: 1.3rem; line-height: 1.6; margin-bottom: 0.8rem;">
+                                            🌳 → 🏔️ → 💧 → 🔥 → ⚔️ → 🌳
+                                        </div>
+                                        <div style="font-size: 0.85rem; color: #666; line-height: 1.4;">
+                                            <strong>Mutual Restraint:</strong><br>
+                                            Wood depletes Earth → Earth absorbs Water → Water extinguishes Fire → Fire melts Metal → Metal cuts Wood
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Core Philosophy -->
+                                <div style="background: rgba(124, 58, 237, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #7c3aed;">
+                                    <div style="text-align: center; color: #7c3aed; font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem;">Universal Balance Principle</div>
+                                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0; text-align: center;">Each element both creates and controls others, forming an eternal dance of harmony where opposing forces maintain cosmic equilibrium through dynamic interaction.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Call to Action -->
+                            <div class="cta-section" style="text-align: center;">
+                                <p class="cta-text" style="color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">Discover how these ancient principles can guide your modern life journey toward balance and fulfillment.</p>
+                                <a href="#divination" class="btn btn-primary" style="background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; padding: 0.8rem 2rem; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; transition: transform 0.3s ease;">Explore Your Element Path</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Card: Modern Applications & Global Impact -->
+                    <div class="about-card modern-card">
+                        <div class="card-header">
+                            <div class="card-icon">🌍💫</div>
+                            <h3>Modern Applications & Global Impact</h3>
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="applications-grid">
+                                <div class="app-item">
+                                    <div class="app-icon">🏠</div>
+                                    <div class="app-content">
+                                        <h4>Feng Shui Design</h4>
+                                        <p>Creating harmonious living spaces</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="app-item">
+                                    <div class="app-icon">🧘</div>
+                                    <div class="app-content">
+                                        <h4>Wellness & Meditation</h4>
+                                        <p>Balancing mind, body, and spirit</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="app-item">
+                                    <div class="app-icon">🍃</div>
+                                    <div class="app-content">
+                                        <h4>Holistic Health</h4>
+                                        <p>Traditional healing approaches</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="app-item">
+                                    <div class="app-icon">💼</div>
+                                    <div class="app-content">
+                                        <h4>Life Coaching</h4>
+                                        <p>Personal development guidance</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="global-section">
+                                <h4>🌟 Why Choose Our Studio</h4>
+                                <div class="benefits-list">
+                                    <div class="benefit-item">
+                                    <span class="benefit-icon">🎯</span>
+                                    <span class="benefit-text">Authentic Eastern Wisdom Heritage</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <span class="benefit-icon">📊</span>
+                                    <span class="benefit-text">Thousands of Consultation Case Experience</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <span class="benefit-icon">💎</span>
+                                    <span class="benefit-text">Sincere and Trustworthy Service</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <span class="benefit-icon">🌟</span>
+                                    <span class="benefit-text">Valuable Guidance and Insights</span>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Cat Five Elements Studio. All rights reserved. 🐱✨</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">Experience the charm of Eastern Five Elements with adorable cats</p>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🛒 Your Shopping Cart</h2>
+            <div id="cart-items">
+                <!-- 购物车商品将在这里动态显示 -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">Total: <span id="cart-total">$0</span></div>
+                <button id="checkout-btn" class="btn btn-primary">Proceed to Checkout 💰</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content checkout-content">
+            <span class="close-modal">&times;</span>
+            <div class="checkout-steps">
+                <div class="step active" data-step="1">1. Information</div>
+                <div class="step" data-step="2">2. Shipping</div>
+                <div class="step" data-step="3">3. Payment</div>
+                <div class="step" data-step="4">4. Review</div>
+            </div>
+            
+            <!-- 步骤1：客户信息 -->
+            <div class="checkout-step-content" id="step-1">
+                <h2>Customer Information</h2>
+                <form id="customer-info-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <button type="button" class="btn btn-primary next-step">Continue to Shipping</button>
+                </form>
+            </div>
+            
+            <!-- 步骤2：配送信息 -->
+            <div class="checkout-step-content" id="step-2" style="display:none">
+                <h2>Shipping Information</h2>
+                <form id="shipping-info-form">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" name="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Postal Code</label>
+                        <input type="text" name="postal" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <select name="country" required>
+                            <option value="">Select Country</option>
+                            <!-- 亚洲 -->
+                            <optgroup label="亚洲 Asia">
+                                <option value="AF">Afghanistan 阿富汗</option>
+                                <option value="AM">Armenia 亚美尼亚</option>
+                                <option value="AZ">Azerbaijan 阿塞拜疆</option>
+                                <option value="BH">Bahrain 巴林</option>
+                                <option value="BD">Bangladesh 孟加拉国</option>
+                                <option value="BT">Bhutan 不丹</option>
+                                <option value="BN">Brunei 文莱</option>
+                                <option value="KH">Cambodia 柬埔寨</option>
+                                <option value="CN">China 中国</option>
+                                <option value="CY">Cyprus 塞浦路斯</option>
+                                <option value="GE">Georgia 格鲁吉亚</option>
+                                <option value="IN">India 印度</option>
+                                <option value="ID">Indonesia 印度尼西亚</option>
+                                <option value="IR">Iran 伊朗</option>
+                                <option value="IQ">Iraq 伊拉克</option>
+                                <option value="IL">Israel 以色列</option>
+                                <option value="JP">Japan 日本</option>
+                                <option value="JO">Jordan 约旦</option>
+                                <option value="KZ">Kazakhstan 哈萨克斯坦</option>
+                                <option value="KW">Kuwait 科威特</option>
+                                <option value="KG">Kyrgyzstan 吉尔吉斯斯坦</option>
+                                <option value="LA">Laos 老挝</option>
+                                <option value="LB">Lebanon 黎巴嫩</option>
+                                <option value="MY">Malaysia 马来西亚</option>
+                                <option value="MV">Maldives 马尔代夫</option>
+                                <option value="MN">Mongolia 蒙古</option>
+                                <option value="MM">Myanmar 缅甸</option>
+                                <option value="NP">Nepal 尼泊尔</option>
+                                <option value="KP">North Korea 朝鲜</option>
+                                <option value="OM">Oman 阿曼</option>
+                                <option value="PK">Pakistan 巴基斯坦</option>
+                                <option value="PS">Palestine 巴勒斯坦</option>
+                                <option value="PH">Philippines 菲律宾</option>
+                                <option value="QA">Qatar 卡塔尔</option>
+                                <option value="SA">Saudi Arabia 沙特阿拉伯</option>
+                                <option value="SG">Singapore 新加坡</option>
+                                <option value="KR">South Korea 韩国</option>
+                                <option value="LK">Sri Lanka 斯里兰卡</option>
+                                <option value="SY">Syria 叙利亚</option>
+                                <option value="TW">Taiwan 台湾</option>
+                                <option value="TJ">Tajikistan 塔吉克斯坦</option>
+                                <option value="TH">Thailand 泰国</option>
+                                <option value="TL">Timor-Leste 东帝汶</option>
+                                <option value="TR">Turkey 土耳其</option>
+                                <option value="TM">Turkmenistan 土库曼斯坦</option>
+                                <option value="AE">United Arab Emirates 阿联酋</option>
+                                <option value="UZ">Uzbekistan 乌兹别克斯坦</option>
+                                <option value="VN">Vietnam 越南</option>
+                                <option value="YE">Yemen 也门</option>
+                            </optgroup>
+                            
+                            <!-- 欧洲 -->
+                            <optgroup label="欧洲 Europe">
+                                <option value="AL">Albania 阿尔巴尼亚</option>
+                                <option value="AD">Andorra 安道尔</option>
+                                <option value="AT">Austria 奥地利</option>
+                                <option value="BY">Belarus 白俄罗斯</option>
+                                <option value="BE">Belgium 比利时</option>
+                                <option value="BA">Bosnia and Herzegovina 波黑</option>
+                                <option value="BG">Bulgaria 保加利亚</option>
+                                <option value="HR">Croatia 克罗地亚</option>
+                                <option value="CZ">Czech Republic 捷克</option>
+                                <option value="DK">Denmark 丹麦</option>
+                                <option value="EE">Estonia 爱沙尼亚</option>
+                                <option value="FI">Finland 芬兰</option>
+                                <option value="FR">France 法国</option>
+                                <option value="DE">Germany 德国</option>
+                                <option value="GR">Greece 希腊</option>
+                                <option value="HU">Hungary 匈牙利</option>
+                                <option value="IS">Iceland 冰岛</option>
+                                <option value="IE">Ireland 爱尔兰</option>
+                                <option value="IT">Italy 意大利</option>
+                                <option value="XK">Kosovo 科索沃</option>
+                                <option value="LV">Latvia 拉脱维亚</option>
+                                <option value="LI">Liechtenstein 列支敦士登</option>
+                                <option value="LT">Lithuania 立陶宛</option>
+                                <option value="LU">Luxembourg 卢森堡</option>
+                                <option value="MT">Malta 马耳他</option>
+                                <option value="MD">Moldova 摩尔多瓦</option>
+                                <option value="MC">Monaco 摩纳哥</option>
+                                <option value="ME">Montenegro 黑山</option>
+                                <option value="NL">Netherlands 荷兰</option>
+                                <option value="MK">North Macedonia 北马其顿</option>
+                                <option value="NO">Norway 挪威</option>
+                                <option value="PL">Poland 波兰</option>
+                                <option value="PT">Portugal 葡萄牙</option>
+                                <option value="RO">Romania 罗马尼亚</option>
+                                <option value="RU">Russia 俄罗斯</option>
+                                <option value="SM">San Marino 圣马力诺</option>
+                                <option value="RS">Serbia 塞尔维亚</option>
+                                <option value="SK">Slovakia 斯洛伐克</option>
+                                <option value="SI">Slovenia 斯洛文尼亚</option>
+                                <option value="ES">Spain 西班牙</option>
+                                <option value="SE">Sweden 瑞典</option>
+                                <option value="CH">Switzerland 瑞士</option>
+                                <option value="UA">Ukraine 乌克兰</option>
+                                <option value="GB">United Kingdom 英国</option>
+                                <option value="VA">Vatican City 梵蒂冈</option>
+                            </optgroup>
+                            
+                            <!-- 北美洲 -->
+                            <optgroup label="北美洲 North America">
+                                <option value="AG">Antigua and Barbuda 安提瓜和巴布达</option>
+                                <option value="BS">Bahamas 巴哈马</option>
+                                <option value="BB">Barbados 巴巴多斯</option>
+                                <option value="BZ">Belize 伯利兹</option>
+                                <option value="CA">Canada 加拿大</option>
+                                <option value="CR">Costa Rica 哥斯达黎加</option>
+                                <option value="CU">Cuba 古巴</option>
+                                <option value="DM">Dominica 多米尼克</option>
+                                <option value="DO">Dominican Republic 多米尼加</option>
+                                <option value="SV">El Salvador 萨尔瓦多</option>
+                                <option value="GD">Grenada 格林纳达</option>
+                                <option value="GT">Guatemala 危地马拉</option>
+                                <option value="HT">Haiti 海地</option>
+                                <option value="HN">Honduras 洪都拉斯</option>
+                                <option value="JM">Jamaica 牙买加</option>
+                                <option value="MX">Mexico 墨西哥</option>
+                                <option value="NI">Nicaragua 尼加拉瓜</option>
+                                <option value="PA">Panama 巴拿马</option>
+                                <option value="KN">Saint Kitts and Nevis 圣基茨和尼维斯</option>
+                                <option value="LC">Saint Lucia 圣卢西亚</option>
+                                <option value="VC">Saint Vincent and the Grenadines 圣文森特和格林纳丁斯</option>
+                                <option value="TT">Trinidad and Tobago 特立尼达和多巴哥</option>
+                                <option value="US">United States 美国</option>
+                            </optgroup>
+                            
+                            <!-- 南美洲 -->
+                            <optgroup label="南美洲 South America">
+                                <option value="AR">Argentina 阿根廷</option>
+                                <option value="BO">Bolivia 玻利维亚</option>
+                                <option value="BR">Brazil 巴西</option>
+                                <option value="CL">Chile 智利</option>
+                                <option value="CO">Colombia 哥伦比亚</option>
+                                <option value="EC">Ecuador 厄瓜多尔</option>
+                                <option value="GY">Guyana 圭亚那</option>
+                                <option value="PY">Paraguay 巴拉圭</option>
+                                <option value="PE">Peru 秘鲁</option>
+                                <option value="SR">Suriname 苏里南</option>
+                                <option value="UY">Uruguay 乌拉圭</option>
+                                <option value="VE">Venezuela 委内瑞拉</option>
+                            </optgroup>
+                            
+                            <!-- 非洲 -->
+                            <optgroup label="非洲 Africa">
+                                <option value="DZ">Algeria 阿尔及利亚</option>
+                                <option value="AO">Angola 安哥拉</option>
+                                <option value="BJ">Benin 贝宁</option>
+                                <option value="BW">Botswana 博茨瓦纳</option>
+                                <option value="BF">Burkina Faso 布基纳法索</option>
+                                <option value="BI">Burundi 布隆迪</option>
+                                <option value="CV">Cabo Verde 佛得角</option>
+                                <option value="CM">Cameroon 喀麦隆</option>
+                                <option value="CF">Central African Republic 中非</option>
+                                <option value="TD">Chad 乍得</option>
+                                <option value="KM">Comoros 科摩罗</option>
+                                <option value="CG">Congo 刚果</option>
+                                <option value="CD">Congo (Democratic Republic) 刚果民主共和国</option>
+                                <option value="CI">Côte d'Ivoire 科特迪瓦</option>
+                                <option value="DJ">Djibouti 吉布提</option>
+                                <option value="EG">Egypt 埃及</option>
+                                <option value="GQ">Equatorial Guinea 赤道几内亚</option>
+                                <option value="ER">Eritrea 厄立特里亚</option>
+                                <option value="SZ">Eswatini 斯威士兰</option>
+                                <option value="ET">Ethiopia 埃塞俄比亚</option>
+                                <option value="GA">Gabon 加蓬</option>
+                                <option value="GM">Gambia 冈比亚</option>
+                                <option value="GH">Ghana 加纳</option>
+                                <option value="GN">Guinea 几内亚</option>
+                                <option value="GW">Guinea-Bissau 几内亚比绍</option>
+                                <option value="KE">Kenya 肯尼亚</option>
+                                <option value="LS">Lesotho 莱索托</option>
+                                <option value="LR">Liberia 利比里亚</option>
+                                <option value="LY">Libya 利比亚</option>
+                                <option value="MG">Madagascar 马达加斯加</option>
+                                <option value="MW">Malawi 马拉维</option>
+                                <option value="ML">Mali 马里</option>
+                                <option value="MR">Mauritania 毛里塔尼亚</option>
+                                <option value="MU">Mauritius 毛里求斯</option>
+                                <option value="MA">Morocco 摩洛哥</option>
+                                <option value="MZ">Mozambique 莫桑比克</option>
+                                <option value="NA">Namibia 纳米比亚</option>
+                                <option value="NE">Niger 尼日尔</option>
+                                <option value="NG">Nigeria 尼日利亚</option>
+                                <option value="RW">Rwanda 卢旺达</option>
+                                <option value="ST">São Tomé and Príncipe 圣多美和普林西比</option>
+                                <option value="SN">Senegal 塞内加尔</option>
+                                <option value="SC">Seychelles 塞舌尔</option>
+                                <option value="SL">Sierra Leone 塞拉利昂</option>
+                                <option value="SO">Somalia 索马里</option>
+                                <option value="ZA">South Africa 南非</option>
+                                <option value="SS">South Sudan 南苏丹</option>
+                                <option value="SD">Sudan 苏丹</option>
+                                <option value="TZ">Tanzania 坦桑尼亚</option>
+                                <option value="TG">Togo 多哥</option>
+                                <option value="TN">Tunisia 突尼斯</option>
+                                <option value="UG">Uganda 乌干达</option>
+                                <option value="ZM">Zambia 赞比亚</option>
+                                <option value="ZW">Zimbabwe 津巴布韦</option>
+                            </optgroup>
+                            
+                            <!-- 大洋洲 -->
+                            <optgroup label="大洋洲 Oceania">
+                                <option value="AU">Australia 澳大利亚</option>
+                                <option value="FJ">Fiji 斐济</option>
+                                <option value="KI">Kiribati 基里巴斯</option>
+                                <option value="MH">Marshall Islands 马绍尔群岛</option>
+                                <option value="FM">Micronesia 密克罗尼西亚</option>
+                                <option value="NR">Nauru 瑙鲁</option>
+                                <option value="NZ">New Zealand 新西兰</option>
+                                <option value="PW">Palau 帕劳</option>
+                                <option value="PG">Papua New Guinea 巴布亚新几内亚</option>
+                                <option value="WS">Samoa 萨摩亚</option>
+                                <option value="SB">Solomon Islands 所罗门群岛</option>
+                                <option value="TO">Tonga 汤加</option>
+                                <option value="TV">Tuvalu 图瓦卢</option>
+                                <option value="VU">Vanuatu 瓦努阿图</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary prev-step">Back</button>
+                        <button type="button" class="btn btn-primary next-step">Continue to Payment</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 步骤3：支付方式 -->
+            <div class="checkout-step-content" id="step-3" style="display:none">
+                <h2>Payment Method</h2>
+                <form id="payment-form">
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <input type="radio" id="credit-card" name="payment-method" value="credit-card" checked>
+                            <label for="credit-card">Credit Card 💳</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="paypal" name="payment-method" value="paypal">
+                            <label for="paypal">PayPal <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" height="15"></label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="alipay" name="payment-method" value="alipay">
+                            <label for="alipay">Alipay 支付宝</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="wechat" name="payment-method" value="wechat">
+                            <label for="wechat">WeChat Pay 微信支付</label>
+                        </div>
+                    </div>
+                    
+                    <!-- 信用卡表单 -->
+                    <div id="credit-card-form">
+                        <div class="form-group">
+                            <label>Card Information</label>
+                            <div id="card-element">
+                                <!-- Stripe Elements会在这里插入卡片输入框 -->
+                            </div>
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                        
+                        <div class="security-badges">
+                            <div class="security-badge">
+                                <span>🔒</span>
+                                <small>SSL Encrypted</small>
+                            </div>
+                            <div class="security-badge">
+                                <span>🛡️</span>
+                                <small>PCI Compliant</small>
+                            </div>
+                            <div class="security-badge">
+                                <span>✅</span>
+                                <small>Secure Payment</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- PayPal表单 -->
+                    <div id="paypal-form" style="display:none">
+                        <div class="payment-info">
+                            <p>您将被重定向到PayPal完成支付</p>
+                            <div id="paypal-button-container"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 支付宝表单 -->
+                    <div id="alipay-form" style="display:none">
+                        <div class="payment-info">
+                            <p>请使用支付宝扫描下方二维码完成支付</p>
+                            <div class="qr-container">
+                                <div id="alipay-qr-code"></div>
+                                <p class="qr-instruction">打开支付宝扫一扫</p>
+                            </div>
+                            <div class="payment-status">
+                                <span class="status-indicator">⏳</span>
+                                <span>等待支付...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 微信支付表单 -->
+                    <div id="wechat-form" style="display:none">
+                        <div class="payment-info">
+                            <p>请使用微信扫描下方二维码完成支付</p>
+                            <div class="qr-container">
+                                <div id="wechat-qr-code"></div>
+                                <p class="qr-instruction">打开微信扫一扫</p>
+                            </div>
+                            <div class="payment-status">
+                                <span class="status-indicator">⏳</span>
+                                <span>等待支付...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary prev-step">Back</button>
+                        <button type="button" class="btn btn-primary next-step">Review Order</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 步骤4：订单确认 -->
+            <div class="checkout-step-content" id="step-4" style="display:none">
+                <h2>Order Review</h2>
+                <div class="order-summary">
+                    <h3>Order Items</h3>
+                    <div id="order-items">
+                        <!-- 订单商品将在这里动态显示 -->
+                    </div>
+                    <div class="order-totals">
+                        <div class="order-subtotal">Subtotal: <span id="order-subtotal">$0</span></div>
+                        <div class="order-shipping">Shipping: <span id="order-shipping">$0</span></div>
+                        <div class="order-tax">Tax: <span id="order-tax">$0</span></div>
+                        <div class="order-total">Total: <span id="order-total">$0</span></div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary prev-step">Back</button>
+                    <button type="button" id="place-order-btn" class="btn btn-primary">Place Order 🎁</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 订单确认弹窗 -->
+    <div id="order-confirmation" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="confirmation-content">
+                <div class="confirmation-icon">✅</div>
+                <h2>Order Placed Successfully!</h2>
+                <p>Thank you for your purchase. Your order has been received and is being processed.</p>
+                <p>Order #: <span id="order-number">CAT-12345</span></p>
+                <p>A confirmation email has been sent to your email address.</p>
+                <button class="btn btn-primary" id="continue-shopping">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 多语言支持系统
+        const translations = {
+            en: {
+                'site.title': 'karma is a cat',
+                'site.subtitle': 'Experience the charm of Eastern Five Elements with adorable cats',
+                'nav.home': 'Home',
+                'nav.divination': 'Divination',
+                'nav.shop': 'Shop',
+                'nav.about': 'About',
+                'hero.title': 'karma is a cat',
+                'hero.subtitle': 'Discover the mystical charm of Eastern Five Elements with adorable cats',
+                'cart.title': 'Cart',
+                'checkout.title': 'Checkout',
+                'order.success': 'Order Placed Successfully!'
+            },
+            zh: {
+                'site.title': '缘分是只猫',
+                'site.subtitle': '用可爱的猫咪体验东方五行哲学的魅力',
+                'nav.home': '首页',
+                'nav.divination': '占卜',
+                'nav.shop': '商店',
+                'nav.about': '关于',
+                'hero.title': '缘分是只猫',
+                'hero.subtitle': '用可爱的猫咪探索东方五行的神秘魅力',
+                'cart.title': '购物车',
+                'checkout.title': '结账',
+                'order.success': '订单提交成功！'
+            }
+        };
+
+        let currentLanguage = localStorage.getItem('preferred-language') || 'en';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferred-language', lang);
+            document.documentElement.lang = lang;
+            updatePageContent();
+        }
+
+        function updatePageContent() {
+            const elements = document.querySelectorAll('[data-lang-key]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        // 页面加载时初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('language-select').value = currentLanguage;
+            document.documentElement.lang = currentLanguage;
+            updatePageContent();
+        });
+
+        // 统一的错误处理
+        function showError(message, duration = 5000) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-notification';
+            errorDiv.innerHTML = `
+                <div class="error-content">
+                    <span class="error-icon">⚠️</span>
+                    <span class="error-message">${message}</span>
+                    <button class="error-close" onclick="this.closest('.error-notification').remove()">×</button>
+                </div>
+            `;
+            
+            document.body.appendChild(errorDiv);
+            
+            // 自动移除
+            setTimeout(() => {
+                errorDiv.remove();
+            }, duration);
+        }
+
+        // 成功提示
+        function showSuccess(message, duration = 3000) {
+            const successDiv = document.createElement('div');
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #10b981, #059669);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+                z-index: 10000;
+                font-weight: 500;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            successDiv.innerHTML = `✅ ${message}`;
+            
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.style.animation = 'slideOutRight 0.3s ease-in forwards';
+                setTimeout(() => successDiv.remove(), 300);
+            }, duration);
+        }
+
+        // 加载状态显示
+        function showLoading(message = '处理中...') {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading-overlay';
+            loadingDiv.id = 'payment-loading';
+            loadingDiv.innerHTML = `
+                <div class="loading-content">
+                    <div class="loading-spinner"></div>
+                    <p>${message}</p>
+                </div>
+            `;
+            
+            document.body.appendChild(loadingDiv);
+        }
+
+        function hideLoading() {
+            const loadingDiv = document.getElementById('payment-loading');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+        
+        // 安全函数
+        // 输入验证和清理
+        function sanitizeInput(input) {
+            return input.replace(/[<>"'&]/g, function(match) {
+                const map = {
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#x27;',
+                    '&': '&amp;'
+                };
+                return map[match];
+            });
+        }
+        
+        // 防止重复提交
+        let isSubmitting = false;
+        const submitCooldown = 5000; // 5秒冷却时间
+
+        function preventDoubleSubmit(callback) {
+            if (isSubmitting) {
+                showError('请勿重复提交，请稍候再试');
+                return;
+            }
+            
+            isSubmitting = true;
+            
+            callback().finally(() => {
+                setTimeout(() => {
+                    isSubmitting = false;
+                }, submitCooldown);
+            });
+        }
+
+        // 检测可疑活动
+        function detectSuspiciousActivity() {
+            const attempts = JSON.parse(localStorage.getItem('paymentAttempts') || '[]');
+            const now = Date.now();
+            const recentAttempts = attempts.filter(time => now - time < 300000); // 5分钟内
+            
+            if (recentAttempts.length > 3) {
+                showError('检测到异常活动，请稍后再试或联系客服');
+                return false;
+            }
+            
+            // 记录本次尝试
+            recentAttempts.push(now);
+            localStorage.setItem('paymentAttempts', JSON.stringify(recentAttempts));
+            
+            return true;
+        }
+        
+        // 敏感数据加密存储（仅用于临时存储，不存储支付信息）
+        function encryptData(data, key) {
+            // 简单的XOR加密（实际应用中应使用更强的加密）
+            let encrypted = '';
+            for (let i = 0; i < data.length; i++) {
+                encrypted += String.fromCharCode(data.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+            }
+            return btoa(encrypted);
+        }
+
+        function decryptData(encryptedData, key) {
+            const data = atob(encryptedData);
+            let decrypted = '';
+            for (let i = 0; i < data.length; i++) {
+                decrypted += String.fromCharCode(data.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+            }
+            return decrypted;
+        }
+
+        // 安全存储用户会话数据
+        function secureSessionStorage(key, data) {
+            const sessionKey = 'cat_studio_' + Date.now();
+            const encrypted = encryptData(JSON.stringify(data), sessionKey);
+            sessionStorage.setItem(key, encrypted);
+            sessionStorage.setItem(key + '_key', sessionKey);
+        }
+
+        function getSecureSessionData(key) {
+            const encrypted = sessionStorage.getItem(key);
+            const sessionKey = sessionStorage.getItem(key + '_key');
+            
+            if (!encrypted || !sessionKey) return null;
+            
+            try {
+                const decrypted = decryptData(encrypted, sessionKey);
+                return JSON.parse(decrypted);
+            } catch (error) {
+                console.error('Failed to decrypt session data:', error);
+                return null;
+            }
+        }
+        
+        // CSRF Token管理
+        function getCsrfToken() {
+            return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+        }
+        
+        // 在页面加载时获取CSRF token
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('/csrf-token');
+                const data = await response.json();
+                
+                // 创建或更新CSRF meta标签
+                let csrfMeta = document.querySelector('meta[name="csrf-token"]');
+                if (!csrfMeta) {
+                    csrfMeta = document.createElement('meta');
+                    csrfMeta.name = 'csrf-token';
+                    document.head.appendChild(csrfMeta);
+                }
+                csrfMeta.content = data.token;
+            } catch (error) {
+                console.error('Failed to get CSRF token:', error);
+            }
+        });
+
+        // 信用卡号验证（Luhn算法）
+        function validateCreditCard(cardNumber) {
+            const num = cardNumber.replace(/\D/g, '');
+            let sum = 0;
+            let isEven = false;
+            
+            for (let i = num.length - 1; i >= 0; i--) {
+                let digit = parseInt(num.charAt(i));
+                
+                if (isEven) {
+                    digit *= 2;
+                    if (digit > 9) {
+                        digit -= 9;
+                    }
+                }
+                
+                sum += digit;
+                isEven = !isEven;
+            }
+            
+            return sum % 10 === 0;
+        }
+
+        // 邮箱验证
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // 电话号码验证
+        function validatePhone(phone) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,3}[\s\-]?[\(]?[\d]{1,4}[\)]?[\s\-]?[\d]{1,4}[\s\-]?[\d]{1,9}$/;
+            return phoneRegex.test(phone);
+        }
+
+        // 安全的表单提交
+        function secureFormSubmit(formData) {
+            // 客户端验证
+            const validatedData = {};
+            
+            for (const [key, value] of Object.entries(formData)) {
+                validatedData[key] = sanitizeInput(value);
+            }
+            
+            // 特殊验证
+            if (validatedData.email && !validateEmail(validatedData.email)) {
+                throw new Error('Invalid email format');
+            }
+            
+            if (validatedData.phone && !validatePhone(validatedData.phone)) {
+                throw new Error('Invalid phone format');
+            }
+            
+            return validatedData;
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced divination form processing
+        document.getElementById('divination-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state with mystical messages
+            const loadingMessages = [
+                '🐱 Mystical cats are consulting ancient scrolls...',
+                '✨ Reading cosmic energy patterns...',
+                '🔮 Interpreting your Five Elements destiny...',
+                '🌟 Channeling wisdom from the spirit realm...'
+            ];
+            
+            let messageIndex = 0;
+            submitBtn.innerHTML = loadingMessages[0] + ' <span class="loading"></span>';
+            submitBtn.disabled = true;
+            
+            // Cycle through mystical messages
+            const messageInterval = setInterval(() => {
+                messageIndex = (messageIndex + 1) % loadingMessages.length;
+                submitBtn.innerHTML = loadingMessages[messageIndex] + ' <span class="loading"></span>';
+            }, 1000);
+            
+            // Generate personalized results based on birth data
+            setTimeout(() => {
+                clearInterval(messageInterval);
+                
+                // Get form data for personalized results
+                const formData = new FormData(this);
+                const birthYear = parseInt(formData.get('birth_year'));
+                const birthMonth = parseInt(formData.get('birth_month'));
+                const birthDay = parseInt(formData.get('birth_day'));
+                
+                // Simple algorithm to generate varied results
+                const elements = ['Metal', 'Wood', 'Water', 'Fire', 'Earth'];
+                const seed = (birthYear + birthMonth * 31 + birthDay * 24) % 100;
+                
+                // Generate element percentages
+                const percentages = {
+                    metal: Math.max(5, (seed * 7) % 40),
+                    wood: Math.max(5, ((seed + 17) * 11) % 45),
+                    water: Math.max(5, ((seed + 31) * 13) % 35),
+                    fire: Math.max(5, ((seed + 47) * 19) % 40),
+                    earth: Math.max(5, ((seed + 61) * 23) % 30)
+                };
+                
+                // Normalize to 100%
+                const total = Object.values(percentages).reduce((a, b) => a + b, 0);
+                Object.keys(percentages).forEach(key => {
+                    percentages[key] = Math.round((percentages[key] / total) * 100);
+                });
+                
+                // Update chart with personalized data
+                updateDivinationChart(percentages);
+                
+                // Show result
+                document.getElementById('divination-result').style.display = 'block';
+                document.getElementById('divination-result').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Restore button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 4000);
+        });
+        
+        function updateDivinationChart(percentages) {
+            const chartItems = document.querySelectorAll('.chart-item');
+            const elements = ['metal', 'wood', 'water', 'fire', 'earth'];
+            
+            chartItems.forEach((item, index) => {
+                const fill = item.querySelector('.chart-fill');
+                const percentage = item.querySelector('span:last-child');
+                const elementPercentage = percentages[elements[index]];
+                
+                setTimeout(() => {
+                    fill.style.width = elementPercentage + '%';
+                    percentage.textContent = elementPercentage + '%';
+                }, index * 200);
+            });
+            
+            // 动态生成命运内容
+            generateFortuneContent(percentages);
+        }
+        
+        // 新增：动态生成命运内容函数
+        function generateFortuneContent(percentages) {
+            // 找出主导元素
+            const dominantElement = Object.keys(percentages).reduce((a, b) => 
+                percentages[a] > percentages[b] ? a : b
+            );
+            
+            // 元素特性数据库
+            const elementData = {
+                metal: {
+                    name: 'Metal',
+                    icon: '⚔️',
+                    colors: 'Silver White, Platinum Gold, Steel Blue',
+                    lucky: 'Earth (provides foundation) & Water (enhances wisdom)',
+                    growth: 'Embrace more Wood energy for flexibility and Fire energy for passion'
+                },
+                wood: {
+                    name: 'Wood', 
+                    icon: '🌳',
+                    colors: 'Emerald Green, Forest Green, Spring Green',
+                    lucky: 'Water (enhances growth) & Fire (provides energy)',
+                    growth: 'Embrace more Fire energy for passion and Earth energy for grounding'
+                },
+                water: {
+                    name: 'Water',
+                    icon: '💧',                     
+                    colors: 'Deep Blue, Ocean Blue, Midnight Blue',
+                    lucky: 'Metal (provides structure) & Wood (channels growth)',
+                    growth: 'Embrace more Earth energy for stability and Metal energy for focus'
+                },
+                fire: {
+                    name: 'Fire',
+                    icon: '🔥',
+                    colors: 'Crimson Red, Golden Orange, Bright Yellow', 
+                    lucky: 'Wood (provides fuel) & Earth (grounds energy)',
+                    growth: 'Embrace more Water energy for wisdom and Metal energy for discipline'
+                },
+                earth: {
+                    name: 'Earth',
+                    icon: '🏔️',
+                    colors: 'Golden Yellow, Earth Brown, Warm Beige',
+                    lucky: 'Fire (provides energy) & Metal (adds structure)', 
+                    growth: 'Embrace more Water energy for flexibility and Wood energy for growth'
+                }
+            };
+            
+            // 根据百分比生成个性化描述
+            const dominant = elementData[dominantElement];
+            const secondHighest = Object.keys(percentages)
+                .filter(key => key !== dominantElement)
+                .reduce((a, b) => percentages[a] > percentages[b] ? a : b);
+            
+            // 生成动态内容
+            const fortuneContent = document.querySelector('.fortune-content');
+            fortuneContent.innerHTML = `
+                <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">🌟 Dominant Element:</strong> ${dominant.icon} ${dominant.name} (${percentages[dominantElement]}%) - You are a natural ${dominant.name.toLowerCase()} person</p>
+                <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">💎 Lucky Elements:</strong> ${dominant.lucky}</p>
+                <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">🎯 Power Colors:</strong> ${dominant.colors}</p>
+                <p style="margin-bottom: 1.5rem;"><strong class="fortune-highlight">⚡ Secondary Strength:</strong> ${elementData[secondHighest].icon} ${elementData[secondHighest].name} (${percentages[secondHighest]}%) adds ${secondHighest === 'metal' ? 'structure and discipline' : secondHighest === 'wood' ? 'creativity and growth' : secondHighest === 'water' ? 'wisdom and adaptability' : secondHighest === 'fire' ? 'passion and energy' : 'stability and grounding'} to your character</p>
+                <p><strong class="fortune-highlight">🔥 Growth Areas:</strong> ${dominant.growth}</p>
+            `;
+        }
+
+        // Enhanced card hover effects
+        document.querySelectorAll('.wuxing-card, .product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Add staggered animation for grid items
+                    if (entry.target.parentElement.classList.contains('wuxing-grid') || 
+                        entry.target.parentElement.classList.contains('products-grid')) {
+                        const siblings = Array.from(entry.target.parentElement.children);
+                        const index = siblings.indexOf(entry.target);
+                        entry.target.style.animationDelay = (index * 0.1) + 's';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.wuxing-card, .product-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+        
+        // Add mystical floating elements
+        function createFloatingElement() {
+            const symbols = ['✨', '🌟', '💫', '⭐', '🔮', '🌙'];
+            const element = document.createElement('div');
+            element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            element.style.cssText = `
+                position: fixed;
+                font-size: 20px;
+                opacity: 0.3;
+                pointer-events: none;
+                z-index: -1;
+                animation: float-up 8s linear forwards;
+            `;
+            
+            element.style.left = Math.random() * window.innerWidth + 'px';
+            element.style.top = window.innerHeight + 'px';
+            
+            document.body.appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 8000);
+        }
+        
+        // Add floating animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float-up {
+                to {
+                    transform: translateY(-${window.innerHeight + 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Create floating elements periodically
+        setInterval(createFloatingElement, 3000);
+        
+        // 购物车功能
+        let cart = [];
+        const cartModal = document.createElement('div');
+        cartModal.id = 'cart-modal';
+
+        // 添加到购物车
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const name = this.dataset.name;
+                const price = parseFloat(this.dataset.price);
+                
+                // 特殊处理咨询服务
+                if (id === 'consultation') {
+                    // 显示咨询预约表单
+                    showConsultationBooking(name, price);
+                    return;
+                }
+                
+                // 检查商品是否已在购物车中
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: id,
+                        name: name,
+                        price: price,
+                        quantity: 1
+                    });
+                }
+                
+                // 更新购物车图标
+                updateCartIcon();
+                
+                // 显示添加成功动画
+                showAddedAnimation(this);
+            });
+        });
+        
+        // 咨询预约表单功能
+        function showConsultationBooking(serviceName, price) {
+            // 创建预约表单模态框
+            const bookingModal = document.createElement('div');
+            bookingModal.className = 'modal';
+            bookingModal.style.display = 'block';
+            bookingModal.innerHTML = `
+                <div class="modal-content" style="max-width: 700px;">
+                    <span class="close-modal">&times;</span>
+                    <h2 style="color: #92400e; text-align: center; margin-bottom: 2rem;">🔮 Book Consultation Service</h2>
+                    <form id="consultation-booking-form">
+                        <div class="form-group">
+                            <label>Service Type</label>
+                            <input type="text" value="${serviceName}" readonly style="background: #f3f4f6;">
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="text" value="$${price}" readonly style="background: #f3f4f6;">
+                        </div>
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" name="client_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Contact Method *</label>
+                            <select name="contact_method" required>
+                                <option value="">Select contact method</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="telegram">Telegram</option>
+                                <option value="discord">Discord</option>
+                                <option value="signal">Signal</option>
+                                <option value="line">LINE</option>
+                                <option value="email">Email</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact ID/Username *</label>
+                            <input type="text" name="contact_id" placeholder="@username or contact ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Birth Date *</label>
+                            <input type="date" name="birth_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Birth Location & Timezone *</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                                <select name="birth_continent" required>
+                                    <option value="">Select Continent</option>
+                                    <option value="north_america">North America</option>
+                                    <option value="south_america">South America</option>
+                                    <option value="europe">Europe</option>
+                                    <option value="asia">Asia</option>
+                                    <option value="africa">Africa</option>
+                                    <option value="oceania">Oceania</option>
+                                </select>
+                                <select name="birth_country" required disabled>
+                                    <option value="">Select Country</option>
+                                </select>
+                                <select name="birth_timezone" required disabled>
+                                    <option value="">Select Timezone</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Birth Time (Local Time) *</label>
+                            <input type="time" name="birth_time" required style="width: 100%;">
+                        </div>
+                        <div class="form-group">
+                            <label>Consultation Focus *</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                                <label style="display: flex; align-items: center;"><input type="checkbox" name="focus[]" value="wealth"> Wealth Analysis</label>
+                                <label style="display: flex; align-items: center;"><input type="checkbox" name="focus[]" value="career"> Career Development</label>
+                                <label style="display: flex; align-items: center;"><input type="checkbox" name="focus[]" value="love"> Love & Marriage</label>
+                                <label style="display: flex; align-items: center;"><input type="checkbox" name="focus[]" value="health"> Health & Wellness</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Consultation Time (China Time)</label>
+                            <select name="preferred_time">
+                                <option value="">Select time slot</option>
+                                <option value="morning">Morning 9:00-12:00 (China Time)</option>
+                                <option value="afternoon">Afternoon 2:00-5:00 (China Time)</option>
+                                <option value="evening">Evening 7:00-9:00 (China Time)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Special Notes</label>
+                            <textarea name="notes" rows="3" placeholder="Please describe your main concerns or special circumstances"></textarea>
+                        </div>
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button type="submit" class="btn btn-primary" style="background: linear-gradient(45deg, #f59e0b, #d97706); border: none; padding: 12px 30px;">Confirm Booking & Payment 💰</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(bookingModal);
+            
+            // 五大洲国家时区数据
+            const continentData = {
+                north_america: {
+                    'US': {
+                        name: 'United States',
+                        timezones: {
+                            'America/New_York': 'Eastern Time (UTC-5/-4)',
+                            'America/Chicago': 'Central Time (UTC-6/-5)',
+                            'America/Denver': 'Mountain Time (UTC-7/-6)',
+                            'America/Los_Angeles': 'Pacific Time (UTC-8/-7)',
+                            'America/Phoenix': 'Arizona Time (UTC-7)',
+                            'America/Anchorage': 'Alaska Time (UTC-9/-8)',
+                            'Pacific/Honolulu': 'Hawaii Time (UTC-10)'
+                        }
+                    },
+                    'CA': {
+                        name: 'Canada',
+                        timezones: {
+                            'America/Toronto': 'Eastern Time (UTC-5/-4)',
+                            'America/Winnipeg': 'Central Time (UTC-6/-5)',
+                            'America/Edmonton': 'Mountain Time (UTC-7/-6)',
+                            'America/Vancouver': 'Pacific Time (UTC-8/-7)',
+                            'America/Halifax': 'Atlantic Time (UTC-4/-3)',
+                            'America/St_Johns': 'Newfoundland Time (UTC-3:30/-2:30)'
+                        }
+                    },
+                    'MX': {
+                        name: 'Mexico',
+                        timezones: {
+                            'America/Mexico_City': 'Central Time (UTC-6/-5)',
+                            'America/Tijuana': 'Pacific Time (UTC-8/-7)',
+                            'America/Cancun': 'Eastern Time (UTC-5)'
+                        }
+                    }
+                },
+                south_america: {
+                    'BR': {
+                        name: 'Brazil',
+                        timezones: {
+                            'America/Sao_Paulo': 'Brasília Time (UTC-3/-2)',
+                            'America/Manaus': 'Amazon Time (UTC-4)',
+                            'America/Fortaleza': 'Brasília Time (UTC-3)',
+                            'America/Rio_Branco': 'Acre Time (UTC-5)'
+                        }
+                    },
+                    'AR': {
+                        name: 'Argentina',
+                        timezones: {
+                            'America/Argentina/Buenos_Aires': 'Argentina Time (UTC-3)'
+                        }
+                    },
+                    'CL': {
+                        name: 'Chile',
+                        timezones: {
+                            'America/Santiago': 'Chile Time (UTC-4/-3)',
+                            'Pacific/Easter': 'Easter Island Time (UTC-6/-5)'
+                        }
+                    },
+                    'CO': {
+                        name: 'Colombia',
+                        timezones: {
+                            'America/Bogota': 'Colombia Time (UTC-5)'
+                        }
+                    },
+                    'PE': {
+                        name: 'Peru',
+                        timezones: {
+                            'America/Lima': 'Peru Time (UTC-5)'
+                        }
+                    }
+                },
+                europe: {
+                    'GB': {
+                        name: 'United Kingdom',
+                        timezones: {
+                            'Europe/London': 'Greenwich Mean Time (UTC+0/+1)'
+                        }
+                    },
+                    'DE': {
+                        name: 'Germany',
+                        timezones: {
+                            'Europe/Berlin': 'Central European Time (UTC+1/+2)'
+                        }
+                    },
+                    'FR': {
+                        name: 'France',
+                        timezones: {
+                            'Europe/Paris': 'Central European Time (UTC+1/+2)'
+                        }
+                    },
+                    'IT': {
+                        name: 'Italy',
+                        timezones: {
+                            'Europe/Rome': 'Central European Time (UTC+1/+2)'
+                        }
+                    },
+                    'ES': {
+                        name: 'Spain',
+                        timezones: {
+                            'Europe/Madrid': 'Central European Time (UTC+1/+2)',
+                            'Atlantic/Canary': 'Western European Time (UTC+0/+1)'
+                        }
+                    },
+                    'NL': {
+                        name: 'Netherlands',
+                        timezones: {
+                            'Europe/Amsterdam': 'Central European Time (UTC+1/+2)'
+                        }
+                    },
+                    'CH': {
+                        name: 'Switzerland',
+                        timezones: {
+                            'Europe/Zurich': 'Central European Time (UTC+1/+2)'
+                        }
+                    },
+                    'SE': {
+                        name: 'Sweden',
+                        timezones: {
+                            'Europe/Stockholm': 'Central European Time (UTC+1/+2)'
+                        }
+                    },
+                    'NO': {
+                        name: 'Norway',
+                        timezones: {
+                            'Europe/Oslo': 'Central European Time (UTC+1/+2)'
+                        }
+                    },
+                    'RU': {
+                        name: 'Russia',
+                        timezones: {
+                            'Europe/Moscow': 'Moscow Time (UTC+3)',
+                            'Asia/Yekaterinburg': 'Yekaterinburg Time (UTC+5)',
+                            'Asia/Novosibirsk': 'Novosibirsk Time (UTC+7)',
+                            'Asia/Vladivostok': 'Vladivostok Time (UTC+10)',
+                            'Asia/Kamchatka': 'Kamchatka Time (UTC+12)'
+                        }
+                    }
+                },
+                asia: {
+                    'CN': {
+                        name: 'China',
+                        timezones: {
+                            'Asia/Shanghai': 'China Standard Time (UTC+8)'
+                        }
+                    },
+                    'JP': {
+                        name: 'Japan',
+                        timezones: {
+                            'Asia/Tokyo': 'Japan Standard Time (UTC+9)'
+                        }
+                    },
+                    'KR': {
+                        name: 'South Korea',
+                        timezones: {
+                            'Asia/Seoul': 'Korea Standard Time (UTC+9)'
+                        }
+                    },
+                    'IN': {
+                        name: 'India',
+                        timezones: {
+                            'Asia/Kolkata': 'India Standard Time (UTC+5:30)'
+                        }
+                    },
+                    'TH': {
+                        name: 'Thailand',
+                        timezones: {
+                            'Asia/Bangkok': 'Indochina Time (UTC+7)'
+                        }
+                    },
+                    'VN': {
+                        name: 'Vietnam',
+                        timezones: {
+                            'Asia/Ho_Chi_Minh': 'Indochina Time (UTC+7)'
+                        }
+                    },
+                    'SG': {
+                        name: 'Singapore',
+                        timezones: {
+                            'Asia/Singapore': 'Singapore Standard Time (UTC+8)'
+                        }
+                    },
+                    'MY': {
+                        name: 'Malaysia',
+                        timezones: {
+                            'Asia/Kuala_Lumpur': 'Malaysia Time (UTC+8)'
+                        }
+                    },
+                    'ID': {
+                        name: 'Indonesia',
+                        timezones: {
+                            'Asia/Jakarta': 'Western Indonesia Time (UTC+7)',
+                            'Asia/Makassar': 'Central Indonesia Time (UTC+8)',
+                            'Asia/Jayapura': 'Eastern Indonesia Time (UTC+9)'
+                        }
+                    },
+                    'PH': {
+                        name: 'Philippines',
+                        timezones: {
+                            'Asia/Manila': 'Philippines Standard Time (UTC+8)'
+                        }
+                    },
+                    'HK': {
+                        name: 'Hong Kong',
+                        timezones: {
+                            'Asia/Hong_Kong': 'Hong Kong Time (UTC+8)'
+                        }
+                    },
+                    'TW': {
+                        name: 'Taiwan',
+                        timezones: {
+                            'Asia/Taipei': 'Taipei Standard Time (UTC+8)'
+                        }
+                    },
+                    'AE': {
+                        name: 'United Arab Emirates',
+                        timezones: {
+                            'Asia/Dubai': 'Gulf Standard Time (UTC+4)'
+                        }
+                    },
+                    'SA': {
+                        name: 'Saudi Arabia',
+                        timezones: {
+                            'Asia/Riyadh': 'Arabia Standard Time (UTC+3)'
+                        }
+                    }
+                },
+                africa: {
+                    'ZA': {
+                        name: 'South Africa',
+                        timezones: {
+                            'Africa/Johannesburg': 'South Africa Standard Time (UTC+2)'
+                        }
+                    },
+                    'EG': {
+                        name: 'Egypt',
+                        timezones: {
+                            'Africa/Cairo': 'Eastern European Time (UTC+2/+3)'
+                        }
+                    },
+                    'NG': {
+                        name: 'Nigeria',
+                        timezones: {
+                            'Africa/Lagos': 'West Africa Time (UTC+1)'
+                        }
+                    },
+                    'KE': {
+                        name: 'Kenya',
+                        timezones: {
+                            'Africa/Nairobi': 'East Africa Time (UTC+3)'
+                        }
+                    },
+                    'MA': {
+                        name: 'Morocco',
+                        timezones: {
+                            'Africa/Casablanca': 'Western European Time (UTC+0/+1)'
+                        }
+                    }
+                },
+                oceania: {
+                    'AU': {
+                        name: 'Australia',
+                        timezones: {
+                            'Australia/Sydney': 'Australian Eastern Time (UTC+10/+11)',
+                            'Australia/Melbourne': 'Australian Eastern Time (UTC+10/+11)',
+                            'Australia/Brisbane': 'Australian Eastern Time (UTC+10)',
+                            'Australia/Perth': 'Australian Western Time (UTC+8)',
+                            'Australia/Adelaide': 'Australian Central Time (UTC+9:30/+10:30)',
+                            'Australia/Darwin': 'Australian Central Time (UTC+9:30)'
+                        }
+                    },
+                    'NZ': {
+                        name: 'New Zealand',
+                        timezones: {
+                            'Pacific/Auckland': 'New Zealand Standard Time (UTC+12/+13)',
+                            'Pacific/Chatham': 'Chatham Standard Time (UTC+12:45/+13:45)'
+                        }
+                    },
+                    'FJ': {
+                        name: 'Fiji',
+                        timezones: {
+                            'Pacific/Fiji': 'Fiji Time (UTC+12/+13)'
+                        }
+                    }
+                }
+            };
+            
+            // 获取表单元素
+            const continentSelect = bookingModal.querySelector('select[name="birth_continent"]');
+            const countrySelect = bookingModal.querySelector('select[name="birth_country"]');
+            const timezoneSelect = bookingModal.querySelector('select[name="birth_timezone"]');
+            const birthTimeInput = bookingModal.querySelector('input[name="birth_time"]');
+            const birthDateInput = bookingModal.querySelector('input[name="birth_date"]');
+            
+            // 大洲选择事件
+            continentSelect.addEventListener('change', function() {
+                const selectedContinent = this.value;
+                
+                // 重置国家和时区选择
+                countrySelect.innerHTML = '<option value="">Select Country</option>';
+                timezoneSelect.innerHTML = '<option value="">Select Timezone</option>';
+                timezoneSelect.disabled = true;
+                
+                if (selectedContinent && continentData[selectedContinent]) {
+                    countrySelect.disabled = false;
+                    
+                    // 填充国家选项
+                    Object.keys(continentData[selectedContinent]).forEach(countryCode => {
+                        const country = continentData[selectedContinent][countryCode];
+                        const option = document.createElement('option');
+                        option.value = countryCode;
+                        option.textContent = country.name;
+                        countrySelect.appendChild(option);
+                    });
+                } else {
+                    countrySelect.disabled = true;
+                }
+            });
+            
+            // 国家选择事件
+            countrySelect.addEventListener('change', function() {
+                const selectedContinent = continentSelect.value;
+                const selectedCountry = this.value;
+                
+                // 重置时区选择
+                timezoneSelect.innerHTML = '<option value="">Select Timezone</option>';
+                
+                if (selectedContinent && selectedCountry && 
+                    continentData[selectedContinent] && 
+                    continentData[selectedContinent][selectedCountry]) {
+                    
+                    timezoneSelect.disabled = false;
+                    
+                    // 填充时区选项
+                    const timezones = continentData[selectedContinent][selectedCountry].timezones;
+                    Object.keys(timezones).forEach(timezoneCode => {
+                        const option = document.createElement('option');
+                        option.value = timezoneCode;
+                        option.textContent = timezones[timezoneCode];
+                        timezoneSelect.appendChild(option);
+                    });
+                } else {
+                    timezoneSelect.disabled = true;
+                }
+            });
+            
+
+            
+            // 关闭按钮事件
+            bookingModal.querySelector('.close-modal').addEventListener('click', () => {
+                bookingModal.remove();
+            });
+            
+            // 表单提交事件
+            bookingModal.querySelector('#consultation-booking-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 验证必选的咨询重点
+                const focusChecked = this.querySelectorAll('input[name="focus[]"]:checked');
+                if (focusChecked.length === 0) {
+                    alert('Please select at least one consultation focus');
+                    return;
+                }
+                
+                // 添加到购物车
+                const consultationItem = {
+                    id: 'consultation-' + Date.now(),
+                    name: serviceName,
+                    price: price,
+                    quantity: 1,
+                    type: 'consultation',
+                    bookingData: new FormData(this)
+                };
+                
+                cart.push(consultationItem);
+                updateCartIcon();
+                
+                // 显示成功消息
+                showSuccess('Consultation service added to cart, please proceed with payment');
+                
+                // 关闭预约表单
+                bookingModal.remove();
+                
+                // 打开购物车
+                setTimeout(() => {
+                    openCartModal();
+                }, 1000);
+            });
+        }
+
+        // 更新购物车图标
+        function updateCartIcon() {
+            const cartIcon = document.querySelector('.header-cart');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartIcon.innerHTML = `🛒 Cart (${totalItems})`;
+        }
+
+        // 添加成功动画
+        function showAddedAnimation(button) {
+            const originalText = button.innerHTML;
+            button.innerHTML = '✅ Added!';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 1000);
+        }
+
+        // 打开购物车
+        document.querySelector('.header-cart').addEventListener('click', function(e) {
+            e.preventDefault();
+            openCartModal();
+        });
+
+        // 打开购物车模态框
+        function openCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            
+            // 清空购物车内容
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+                cartTotal.textContent = '$0';
+            } else {
+                // 添加购物车商品
+                let total = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div>
+                            <h4>${item.name}</h4>
+                            <p>$${item.price} × ${item.quantity}</p>
+                        </div>
+                        <div>
+                            <span>$${itemTotal.toFixed(2)}</span>
+                            <button class="remove-item" data-id="${item.id}">×</button>
+                        </div>
+                    `;
+                    
+                    cartItems.appendChild(cartItem);
+                });
+                
+                cartTotal.textContent = `$${total.toFixed(2)}`;
+            }
+            
+            cartModal.style.display = 'block';
+            
+            // 添加移除商品事件
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    removeFromCart(id);
+                    openCartModal(); // 刷新购物车
+                });
+            });
+        }
+
+        // 从购物车中移除商品
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartIcon();
+        }
+
+        // 关闭模态框
+        document.querySelectorAll('.close-modal').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+            });
+        });
+
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        });
+
+        // 结账按钮
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            document.getElementById('cart-modal').style.display = 'none';
+            openCheckoutModal();
+        });
+
+        // 打开结账模态框
+        function openCheckoutModal() {
+            const checkoutModal = document.getElementById('checkout-modal');
+            checkoutModal.style.display = 'block';
+            
+            // 显示第一步
+            showCheckoutStep(1);
+            
+            // 更新订单商品
+            updateOrderItems();
+        }
+
+        // 显示结账步骤
+        function showCheckoutStep(stepNumber) {
+            // 隐藏所有步骤
+            document.querySelectorAll('.checkout-step-content').forEach(step => {
+                step.style.display = 'none';
+            });
+            
+            // 显示当前步骤
+            document.getElementById(`step-${stepNumber}`).style.display = 'block';
+            
+            // 更新步骤指示器
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            document.querySelector(`.step[data-step="${stepNumber}"]`).classList.add('active');
+        }
+
+        // 下一步按钮
+        document.querySelectorAll('.next-step').forEach(button => {
+            button.addEventListener('click', function() {
+                const currentStep = parseInt(this.closest('.checkout-step-content').id.split('-')[1]);
+                const nextStep = currentStep + 1;
+                
+                // 表单验证
+                if (validateStep(currentStep)) {
+                    showCheckoutStep(nextStep);
+                }
+            });
+        });
+
+        // 上一步按钮
+        document.querySelectorAll('.prev-step').forEach(button => {
+            button.addEventListener('click', function() {
+                const currentStep = parseInt(this.closest('.checkout-step-content').id.split('-')[1]);
+                const prevStep = currentStep - 1;
+                
+                showCheckoutStep(prevStep);
+            });
+        });
+
+        // 验证步骤
+        function validateStep(step) {
+            // 简单验证示例，实际应用中需要更完善的验证
+            switch(step) {
+                case 1:
+                    const nameInput = document.querySelector('#customer-info-form input[name="fullname"]');
+                    const emailInput = document.querySelector('#customer-info-form input[name="email"]');
+                    
+                    if (!nameInput.value || !emailInput.value) {
+                        alert('Please fill in all required fields');
+                        return false;
+                    }
+                    return true;
+                    
+                case 2:
+                    const addressInput = document.querySelector('#shipping-info-form input[name="address"]');
+                    const cityInput = document.querySelector('#shipping-info-form input[name="city"]');
+                    
+                    if (!addressInput.value || !cityInput.value) {
+                        alert('Please fill in all required fields');
+                        return false;
+                    }
+                    return true;
+                    
+                case 3:
+                    // 信用卡验证
+                    if (document.getElementById('credit-card').checked) {
+                        const cardNumber = document.getElementById('card-number').value;
+                        const cardExpiry = document.getElementById('card-expiry').value;
+                        const cardCvv = document.getElementById('card-cvv').value;
+                        
+                        if (!cardNumber || !cardExpiry || !cardCvv) {
+                            alert('Please fill in all card details');
+                            return false;
+                        }
+                    }
+                    return true;
+                    
+                default:
+                    return true;
+            }
+        }
+
+        // 根据国家计算运费
+        function calculateShippingByCountry(countryCode) {
+            const shippingRates = {
+                // 免费配送区域
+                'CN': 0,
+                'HK': 0,
+                'MO': 0,
+                'TW': 0,
+                
+                // 亚洲区域
+                'JP': 15,
+                'KR': 15,
+                'SG': 20,
+                'MY': 20,
+                'TH': 25,
+                'VN': 25,
+                'PH': 25,
+                'ID': 30,
+                'IN': 35,
+                
+                // 欧洲区域
+                'GB': 40,
+                'DE': 40,
+                'FR': 40,
+                'IT': 45,
+                'ES': 45,
+                'NL': 40,
+                'BE': 40,
+                'CH': 45,
+                'AT': 45,
+                'SE': 50,
+                'NO': 50,
+                'DK': 45,
+                'FI': 50,
+                
+                // 北美区域
+                'US': 50,
+                'CA': 50,
+                'MX': 55,
+                
+                // 大洋洲
+                'AU': 55,
+                'NZ': 60,
+                
+                // 其他地区默认运费
+                'default': 60
+            };
+            
+            return shippingRates[countryCode] || shippingRates['default'];
+        }
+
+        // 更新订单商品
+        function updateOrderItems() {
+            const orderItems = document.getElementById('order-items');
+            const orderSubtotal = document.getElementById('order-subtotal');
+            const orderShipping = document.getElementById('order-shipping');
+            const orderTax = document.getElementById('order-tax');
+            const orderTotal = document.getElementById('order-total');
+            
+            // 清空订单商品
+            orderItems.innerHTML = '';
+            
+            // 计算小计
+            let subtotal = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <div class="order-item-name">${item.name} × ${item.quantity}</div>
+                    <div class="order-item-price">$${itemTotal.toFixed(2)}</div>
+                `;
+                
+                orderItems.appendChild(orderItem);
+            });
+            
+            // 获取选择的国家
+            const countrySelect = document.querySelector('select[name="country"]');
+            const selectedCountry = countrySelect ? countrySelect.value : '';
+            
+            // 计算运费和税费
+            const shipping = selectedCountry ? calculateShippingByCountry(selectedCountry) : (subtotal > 0 ? 15 : 0);
+            const tax = subtotal * 0.1; // 10% 税率
+            const total = subtotal + shipping + tax;
+            
+            // 更新订单总计
+            orderSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+            orderShipping.textContent = `$${shipping.toFixed(2)}`;
+            orderTax.textContent = `$${tax.toFixed(2)}`;
+            orderTotal.textContent = `$${total.toFixed(2)}`;
+        }
+        
+        // 更新订单总计时使用新的运费计算
+        function updateOrderTotalsWithCountry() {
+            const countrySelect = document.querySelector('select[name="country"]');
+            const selectedCountry = countrySelect ? countrySelect.value : '';
+            
+            const orderSubtotal = document.getElementById('order-subtotal');
+            const orderShipping = document.getElementById('order-shipping');
+            const orderTax = document.getElementById('order-tax');
+            const orderTotal = document.getElementById('order-total');
+            
+            // 计算小计
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+            
+            // 根据国家计算运费
+            const shipping = selectedCountry ? calculateShippingByCountry(selectedCountry) : 15;
+            const tax = subtotal * 0.1; // 10% 税率
+            const total = subtotal + shipping + tax;
+            
+            // 更新显示
+            if (orderSubtotal) orderSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+            if (orderShipping) orderShipping.textContent = `$${shipping.toFixed(2)}`;
+            if (orderTax) orderTax.textContent = `$${tax.toFixed(2)}`;
+            if (orderTotal) orderTotal.textContent = `$${total.toFixed(2)}`;
+        }
+
+        // 提交订单
+        document.getElementById('place-order-btn').addEventListener('click', async function() {
+            // 显示加载状态
+            this.innerHTML = 'Processing... <span class="loading"></span>';
+            this.disabled = true;
+            
+            if (document.getElementById('credit-card').checked) {
+                // 处理Stripe支付
+                await handlePayment();
+            } else {
+                // 模拟其他支付方式处理
+                setTimeout(() => {
+                    // 关闭结账模态框
+                    document.getElementById('checkout-modal').style.display = 'none';
+                    
+                    // 生成随机订单号
+                    const orderNumber = 'CAT-' + Math.floor(Math.random() * 10000);
+                    document.getElementById('order-number').textContent = orderNumber;
+                    
+                    // 显示订单确认
+                    document.getElementById('order-confirmation').style.display = 'block';
+                    
+                    // 清空购物车
+                    cart = [];
+                    updateCartIcon();
+                    
+                    // 重置按钮状态
+                    this.innerHTML = 'Place Order 🎁';
+                    this.disabled = false;
+                }, 2000);
+            }
+        });
+        
+        // Stripe支付处理（重命名原函数）
+        async function handleStripePayment() {
+            const {token, error} = await stripe.createToken(cardElement);
+            
+            if (error) {
+                showPaymentError(error.message);
+            } else {
+                await submitStripePayment(token);
+            }
+        }
+
+        // 提交Stripe支付（重命名原函数）
+        async function submitStripePayment(token) {
+            try {
+                // 模拟Stripe支付处理
+                const result = {
+                    success: true,
+                    order_id: 'CAT-' + Math.floor(Math.random() * 10000)
+                };
+                
+                if (result.success) {
+                    handlePaymentSuccess({
+                        method: 'stripe',
+                        transaction_id: token.id,
+                        order_id: result.order_id
+                    });
+                } else {
+                    showPaymentError('信用卡支付失败');
+                }
+            } catch (error) {
+                console.error('Stripe payment error:', error);
+                showPaymentError('信用卡支付处理失败，请重试');
+            }
+        }
+        
+        // 显示支付错误
+        function showPaymentError(message) {
+            const errorElement = document.getElementById('card-errors');
+            errorElement.textContent = message;
+        }
+
+        // 继续购物
+        document.getElementById('continue-shopping').addEventListener('click', function() {
+            document.getElementById('order-confirmation').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('shop').offsetTop, behavior: 'smooth' });
+        });
+
+        // Stripe 配置和初始化
+        const stripe = Stripe('pk_live_51NXcM8JMIpmmMhVFYPZjFDMQymLTpCnTDzh0QEEsIzGXF3CyGnIK7XzGRJLypdJmG0KLTFDjfKPbaYtU8ByLUKWz00SJrGZLXl'); // 替换为您的公钥
+        const elements = stripe.elements();
+
+        // 创建卡片元素
+        const cardElement = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px',
+                    color: '#424770',
+                    '::placeholder': {
+                        color: '#aab7c4',
+                    },
+                },
+                invalid: {
+                    color: '#9e2146',
+                },
+            },
+        });
+
+        // 将卡片元素挂载到DOM
+        cardElement.mount('#card-element');
+
+        // 处理实时验证错误
+        cardElement.on('change', ({error}) => {
+            const displayError = document.getElementById('card-errors');
+            if (error) {
+                displayError.textContent = error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // 支付方式切换
+        document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'credit-card') {
+                    document.getElementById('credit-card-form').style.display = 'block';
+                } else {
+                    document.getElementById('credit-card-form').style.display = 'none';
+                }
+            });
+        });
+        
+        // 商品图片编辑功能
+        function initProductImageEditor() {
+            document.querySelectorAll('.product-image').forEach(imageContainer => {
+                // 添加编辑按钮
+                const editBtn = document.createElement('button');
+                editBtn.className = 'edit-image-btn';
+                editBtn.innerHTML = '✏️';
+                editBtn.title = '编辑图片';
+                
+                // 添加上传区域
+                const uploadArea = document.createElement('div');
+                uploadArea.className = 'image-upload-area';
+                uploadArea.innerHTML = `
+                    <div style="text-align: center;">
+                        <p>📷 点击上传图片或拖拽图片到此处</p>
+                        <input type="file" accept="image/*" style="margin: 10px 0;">
+                        <div>
+                            <button class="btn btn-primary" onclick="this.closest('.image-upload-area').classList.remove('active')">确定</button>
+                            <button class="btn btn-secondary" onclick="this.closest('.image-upload-area').classList.remove('active')">取消</button>
+                        </div>
+                    </div>
+                `;
+                
+                imageContainer.appendChild(editBtn);
+                imageContainer.appendChild(uploadArea);
+                
+                // 编辑按钮点击事件
+                editBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    uploadArea.classList.add('active');
+                    imageContainer.classList.add('editable');
+                });
+                
+                // 文件上传处理
+                const fileInput = uploadArea.querySelector('input[type="file"]');
+                fileInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            // 创建图片元素
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.style.cssText = 'max-width: 100%; max-height: 150px; border-radius: 10px;';
+                            
+                            // 替换原有内容
+                            const originalContent = imageContainer.firstChild;
+                            imageContainer.insertBefore(img, originalContent);
+                            originalContent.style.display = 'none';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+                
+                // 拖拽上传
+                imageContainer.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    imageContainer.style.borderColor = '#7c3aed';
+                });
+                
+                imageContainer.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    imageContainer.style.borderColor = '#cbd5e1';
+                });
+                
+                imageContainer.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        fileInput.files = files;
+                        fileInput.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+        }
+        
+        // 在页面加载时添加搜索功能
+        document.addEventListener('DOMContentLoaded', function() {
+            addCountrySearch();
+            initProductImageEditor();
+        });
+    </script>
+</body>
+</html>
